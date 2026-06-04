@@ -14,7 +14,7 @@ import pushBlockArenaImg from "@assets/WhatsApp_Image_2026-06-04_at_16.55.42_178
 import roboWarArenaImg from "@assets/WhatsApp_Image_2026-06-04_at_16.59.04_1780572747087.jpeg";
 
 const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
-const WHATSAPP_LINK = "https://wa.me/919051555593";
+const WHATSAPP_LINK = "https://wa.me/919051555593?text=Hi%2C%20I%20want%20to%20know%20more%20about%20BRL";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -74,19 +74,24 @@ export default function Home() {
       ══════════════════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
 
-        {/* BG: robot war arena image fills right half */}
+        {/* BG: robot war arena image fills right portion */}
         <div className="absolute inset-0 z-0">
+          {/* Dark base so nothing bleeds through on left */}
+          <div className="absolute inset-0 bg-background" />
           <img
             src={roboWarArenaImg}
             alt="Arena"
-            className="absolute right-0 top-0 h-full w-[65%] object-cover object-left"
+            className="absolute right-0 top-0 h-full w-[55%] object-cover object-center"
           />
-          {/* Left gradient wipe */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent" />
-          {/* Top + bottom dark fade */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background/80" />
-          {/* Blue/red glow bleed from image */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_30%_50%,rgba(0,100,200,0.08),transparent)]" />
+          {/* Strong left wipe — fully opaque to 45%, then fades to transparent */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to right, hsl(220,20%,4%) 0%, hsl(220,20%,4%) 40%, rgba(7,10,15,0.92) 55%, rgba(7,10,15,0.5) 68%, transparent 100%)" }}
+          />
+          {/* Top and bottom darkening */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-transparent to-background/90" />
+          {/* Subtle blue glow on left */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_70%_at_20%_60%,rgba(0,100,200,0.07),transparent)]" />
         </div>
 
         {/* Content */}
@@ -626,7 +631,7 @@ export default function Home() {
                   </p>
                   <h3 className="font-display font-black text-4xl md:text-5xl uppercase text-yellow-400 tracking-tight leading-none mb-2"
                     style={{ textShadow: "0 0 30px rgba(250,200,0,0.4)" }}>
-                    ROBO XTREME<br />GRAND CHAMPION
+                    BHARAT ROBOTICS LEAGUE<br />GRAND CHAMPION
                   </h3>
                   <p className="text-white/50 font-display text-sm mt-3 max-w-md">
                     Awarded to the team with the <strong className="text-white">highest cumulative score</strong> across all three rounds — the ultimate test of building, pulling, and fighting.
