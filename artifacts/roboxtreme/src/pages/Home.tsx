@@ -1,514 +1,907 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { 
-  Trophy, MapPin, Calendar, Users, Cpu, 
-  ShieldAlert, MessagesSquare, ChevronRight, Zap,
-  Target, Sword, Award, CheckCircle2, MessageCircle
+import {
+  Trophy, MapPin, Calendar, Users,
+  ShieldAlert, ChevronRight, Zap,
+  Target, Award, CheckCircle2, MessageCircle,
+  Clock, Swords, Star, Phone
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import blockPushImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.00_1780570206668.jpeg";
+import blockPullImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_1780570206668.jpeg";
+import robotWarImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_(1)_1780570206668.jpeg";
+import arenaOverviewImg from "@assets/WhatsApp_Image_2026-06-04_at_15.57.36_1780570231360.jpeg";
 
 const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
 const WHATSAPP_LINK = "https://wa.me/919051555593";
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } }
 };
+
+const pushScoring = [
+  { weight: "250g", pts: 10 },
+  { weight: "500g", pts: 20 },
+  { weight: "750g", pts: 30 },
+  { weight: "1 kg", pts: 40 },
+  { weight: "2.5 kg", pts: 50 },
+];
+
+const warScoring = [
+  { time: "Win in 10s", pts: 50, highlight: true },
+  { time: "Win in 20s", pts: 40, highlight: false },
+  { time: "Win in 35s", pts: 25, highlight: false },
+  { time: "Win in 50s", pts: 10, highlight: false },
+  { time: "Tie (60s)", pts: "30 each", highlight: false },
+];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-primary-foreground font-sans">
-      
-      {/* Floating WhatsApp Button */}
-      <a 
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden font-sans">
+
+      {/* Floating WhatsApp */}
+      <a
         href={WHATSAPP_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 p-4 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center group"
+        data-testid="button-whatsapp-float"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white pl-4 pr-5 py-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 group"
       >
-        <MessageCircle className="w-6 h-6" />
-        <span className="absolute right-full mr-4 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Chat with us
-        </span>
+        <MessageCircle className="w-5 h-5 shrink-0" />
+        <span className="font-semibold text-sm font-display tracking-wide">Chat on WhatsApp</span>
       </a>
 
-      {/* 1. Hero Section */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-16 overflow-hidden">
-        {/* Background Effects */}
+      {/* ═══════════════════════════════════════════════════
+          HERO
+      ═══════════════════════════════════════════════════ */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Arena grid background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-background to-background" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute inset-0 bg-background" />
+          <div
+            className="absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage: "linear-gradient(rgba(0,168,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,168,255,0.8) 1px, transparent 1px)",
+              backgroundSize: "60px 60px"
+            }}
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(0,168,255,0.12),transparent)]" />
+          {/* Corner accents */}
+          <div className="absolute top-0 left-0 w-64 h-64 border-l-2 border-t-2 border-[#00a8ff]/30" />
+          <div className="absolute top-0 right-0 w-64 h-64 border-r-2 border-t-2 border-[#00a8ff]/30" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 border-l-2 border-b-2 border-[#00a8ff]/30" />
+          <div className="absolute bottom-0 right-0 w-64 h-64 border-r-2 border-b-2 border-[#00a8ff]/30" />
         </div>
 
-        <div className="container relative z-10 px-4 mx-auto text-center">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="inline-block mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary font-semibold tracking-wider text-sm uppercase"
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-24 text-center">
+          {/* Presenter badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-4"
           >
-            Bharat Robotics League Presents
+            <span className="text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground font-display">
+              FunScholar Innovations Pvt. Ltd. presents
+            </span>
           </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter uppercase text-white mb-4 leading-none"
-          >
-            Robo <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">Xtreme</span><br />
-            Championship <span className="text-muted-foreground/50">2026</span>
-          </motion.h1>
 
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          {/* Main brand */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mb-2"
+          >
+            <h1 className="font-display font-black uppercase leading-none tracking-tight">
+              <span className="block text-4xl sm:text-5xl md:text-6xl text-white/90 mb-1">BHARAT</span>
+              <span
+                className="block text-6xl sm:text-8xl md:text-[9rem] text-transparent"
+                style={{
+                  WebkitTextStroke: "2px #00a8ff",
+                  textShadow: "0 0 60px rgba(0,168,255,0.4), 0 0 120px rgba(0,168,255,0.2)"
+                }}
+              >
+                ROBOTICS
+              </span>
+              <span className="block text-4xl sm:text-5xl md:text-6xl text-white/90 mt-1">LEAGUE</span>
+            </h1>
+          </motion.div>
+
+          {/* Season badge row */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-2xl md:text-4xl font-bold text-gray-300 mt-6 mb-12 tracking-wide uppercase"
+            className="flex items-center justify-center gap-3 mt-6 mb-2"
           >
-            Season Theme: <span className="text-primary">Dangal</span>
-          </motion.h2>
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#00a8ff]" />
+            <span className="bg-[#00a8ff] text-[#030912] font-display font-black text-sm tracking-[0.15em] uppercase px-4 py-1.5 rounded-sm">
+              Season 1
+            </span>
+            <span className="font-display font-bold text-white/60 text-sm tracking-widest uppercase">2026</span>
+            <span className="h-1 w-1 rounded-full bg-white/40" />
+            <span className="font-display font-black text-2xl tracking-wider uppercase text-yellow-400" style={{ textShadow: "0 0 20px rgba(250,200,0,0.5)" }}>
+              DANGAL
+            </span>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#00a8ff]" />
+          </motion.div>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-xl md:text-2xl font-light text-gray-400 mb-12 italic max-w-3xl mx-auto"
+            className="font-display text-xl md:text-2xl font-semibold tracking-[0.2em] text-white/50 uppercase mt-2 mb-10"
           >
-            "Build. Battle. Conquer."
+            Build. Battle. Conquer.
           </motion.p>
 
-          <motion.div 
+          {/* Event info pills */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 text-gray-300"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
           >
-            <div className="flex items-center gap-3 bg-secondary/50 px-6 py-3 rounded-lg border border-border">
-              <Calendar className="w-5 h-5 text-primary" />
-              <span className="font-medium">30th September 2026</span>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-md">
+              <Calendar className="w-4 h-4 text-[#00a8ff]" />
+              <span className="font-display font-semibold text-white tracking-wide">30 September 2026</span>
             </div>
-            <div className="flex items-center gap-3 bg-secondary/50 px-6 py-3 rounded-lg border border-border">
-              <MapPin className="w-5 h-5 text-primary" />
-              <span className="font-medium">Exhibition Hall, Indian Museum, Kolkata</span>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-md">
+              <Clock className="w-4 h-4 text-[#00a8ff]" />
+              <span className="font-display font-semibold text-white tracking-wide">9:00 AM – 5:00 PM</span>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-md">
+              <MapPin className="w-4 h-4 text-[#00a8ff]" />
+              <span className="font-display font-semibold text-white tracking-wide">Indian Museum, Kolkata</span>
             </div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1 }}
+            transition={{ duration: 0.5, delay: 1.0 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button 
-              size="lg" 
-              className="h-16 px-12 text-lg font-bold uppercase tracking-wider bg-primary hover:bg-primary/90 text-white"
+            <button
+              data-testid="button-register-hero"
               onClick={() => window.open(FORM_LINK, "_blank")}
+              className="relative group overflow-hidden font-display font-black text-lg tracking-[0.15em] uppercase px-12 py-5 rounded-sm text-[#030912] bg-[#00a8ff] hover:bg-[#33bbff] transition-all duration-300"
+              style={{ boxShadow: "0 0 30px rgba(0,168,255,0.4), 0 0 60px rgba(0,168,255,0.2)" }}
             >
-              Register Now <ChevronRight className="ml-2 w-6 h-6" />
-            </Button>
+              <span className="relative z-10 flex items-center gap-2">Register Your School <ChevronRight className="w-5 h-5" /></span>
+            </button>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-whatsapp-hero"
+              className="font-display font-bold text-lg tracking-[0.1em] uppercase px-10 py-5 rounded-sm border border-[#25D366]/50 text-[#25D366] hover:bg-[#25D366]/10 transition-all duration-300 flex items-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" /> WhatsApp Us
+            </a>
           </motion.div>
         </div>
+
+        {/* Bottom edge */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00a8ff]/40 to-transparent" />
       </section>
 
-      {/* 2. Event Highlights */}
-      <section className="py-24 bg-secondary/30 relative border-y border-border">
-        <div className="container px-4 mx-auto">
-          <motion.div 
-            variants={staggerContainer}
+      {/* ═══════════════════════════════════════════════════
+          HIGHLIGHTS STRIP
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-12 border-y border-white/5 bg-white/[0.02] diagonal-stripe">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-5 gap-4"
           >
             {[
-              { icon: Cpu, text: "1 Bot • 3 Rounds" },
-              { icon: Zap, text: "Free Participation" },
-              { icon: Trophy, text: "Mega Prize" },
-              { icon: MessagesSquare, text: "Media Coverage" },
-              { icon: Award, text: "1st in Kolkata" }
+              { icon: Target, label: "1 Bot", sub: "3 Rounds" },
+              { icon: Zap, label: "Free", sub: "Participation" },
+              { icon: Trophy, label: "Mega", sub: "Prizes" },
+              { icon: Star, label: "Media", sub: "Coverage" },
+              { icon: Award, label: "1st Ever", sub: "In Kolkata" },
             ].map((item, i) => (
-              <motion.div key={i} variants={fadeUp} className="flex flex-col items-center p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-colors">
-                <item.icon className="w-10 h-10 text-primary mb-4" />
-                <h3 className="font-bold text-gray-200">{item.text}</h3>
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="flex flex-col items-center gap-3 p-5 rounded-md border border-white/8 bg-white/[0.03] hover:border-[#00a8ff]/40 hover:bg-[#00a8ff]/5 transition-all duration-300 text-center group"
+              >
+                <item.icon className="w-8 h-8 text-[#00a8ff] group-hover:scale-110 transition-transform" />
+                <div>
+                  <div className="font-display font-black text-xl text-white tracking-wide uppercase">{item.label}</div>
+                  <div className="text-xs text-muted-foreground font-semibold tracking-wider uppercase">{item.sub}</div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* 3. Eligibility */}
-      <section className="py-24 relative">
-        <div className="container px-4 mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <h2 className="text-4xl font-bold uppercase tracking-tight text-white mb-4">Who Can Enter the Arena?</h2>
-            <div className="h-1 w-24 bg-primary mx-auto rounded-full" />
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-card p-8 rounded-2xl border border-border">
-              <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Grade 6 & Above</h3>
-              <p className="text-muted-foreground">Open to middle and high school students with a passion for robotics.</p>
+      {/* ═══════════════════════════════════════════════════
+          ELIGIBILITY
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-20 max-w-6xl mx-auto px-6">
+        <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.div variants={fadeUp} className="mb-12 text-center">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="h-px w-12 bg-[#00a8ff]" />
+              <span className="font-display text-sm font-bold tracking-[0.2em] uppercase text-[#00a8ff]">Who Can Compete</span>
+              <div className="h-px w-12 bg-[#00a8ff]" />
             </div>
-            <div className="bg-card p-8 rounded-2xl border border-border">
-              <ShieldAlert className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Team Structure</h3>
-              <p className="text-muted-foreground">2 Student Participants + 1 Official Mentor per team.</p>
-            </div>
-            <div className="bg-card p-8 rounded-2xl border border-border">
-              <Target className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Multiple Entries</h3>
-              <p className="text-muted-foreground">Schools can send multiple teams to increase their chances of victory.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. The Three Rounds */}
-      <section className="py-24 bg-secondary/30 border-y border-border">
-        <div className="container px-4 mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold uppercase tracking-tight text-white mb-4">The Battle: 3 Rounds</h2>
-            <p className="text-xl text-muted-foreground">One Robot. Three distinct challenges to prove your supremacy.</p>
-            <div className="h-1 w-24 bg-primary mx-auto rounded-full mt-6" />
-          </motion.div>
-
-          <div className="space-y-12">
-            {/* Round 1 */}
-            <div className="bg-card p-8 md:p-10 rounded-3xl border border-border relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Target className="w-32 h-32" />
-              </div>
-              <h3 className="text-3xl font-black text-white mb-2 flex items-center gap-4">
-                <span className="text-primary">Round 1</span> Block Push Challenge
-              </h3>
-              <p className="text-muted-foreground mb-6 font-mono">Time Limit: 120 Seconds</p>
-              <p className="text-lg text-gray-300 mb-6">
-                Test your robot's pushing power. Push wooden blocks of varying weights completely out of the arena to score points.
-              </p>
-              <div className="overflow-x-auto rounded-xl border border-border">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-secondary/50 text-gray-300 uppercase font-bold">
-                    <tr>
-                      <th className="p-4 border-b border-border">Block Weight</th>
-                      <th className="p-4 border-b border-border">250g</th>
-                      <th className="p-4 border-b border-border">500g</th>
-                      <th className="p-4 border-b border-border">750g</th>
-                      <th className="p-4 border-b border-border">1kg</th>
-                      <th className="p-4 border-b border-border">2.5kg</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-card">
-                    <tr>
-                      <td className="p-4 font-bold text-white border-r border-border bg-secondary/20">Points</td>
-                      <td className="p-4 text-primary font-bold">10 pts</td>
-                      <td className="p-4 text-primary font-bold">20 pts</td>
-                      <td className="p-4 text-primary font-bold">30 pts</td>
-                      <td className="p-4 text-primary font-bold">40 pts</td>
-                      <td className="p-4 text-primary font-bold">50 pts</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Round 2 */}
-            <div className="bg-card p-8 md:p-10 rounded-3xl border border-border relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                <MapPin className="w-32 h-32" />
-              </div>
-              <h3 className="text-3xl font-black text-white mb-2 flex items-center gap-4">
-                <span className="text-primary">Round 2</span> Block Pull Challenge
-              </h3>
-              <p className="text-muted-foreground mb-6 font-mono">Time Limit: 120 Seconds</p>
-              <p className="text-lg text-gray-300 mb-6">
-                Precision and traction. Pull blocks into the designated target zone. 
-                <span className="block mt-2 text-primary font-bold">Requirement: Robot must have a front-center 10mm hook hole.</span>
-              </p>
-              <div className="overflow-x-auto rounded-xl border border-border">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-secondary/50 text-gray-300 uppercase font-bold">
-                    <tr>
-                      <th className="p-4 border-b border-border">Block Weight</th>
-                      <th className="p-4 border-b border-border">250g</th>
-                      <th className="p-4 border-b border-border">500g</th>
-                      <th className="p-4 border-b border-border">750g</th>
-                      <th className="p-4 border-b border-border">1kg</th>
-                      <th className="p-4 border-b border-border">2.5kg</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-card">
-                    <tr>
-                      <td className="p-4 font-bold text-white border-r border-border bg-secondary/20">Points</td>
-                      <td className="p-4 text-primary font-bold">10 pts</td>
-                      <td className="p-4 text-primary font-bold">20 pts</td>
-                      <td className="p-4 text-primary font-bold">30 pts</td>
-                      <td className="p-4 text-primary font-bold">40 pts</td>
-                      <td className="p-4 text-primary font-bold">50 pts</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Round 3 */}
-            <div className="bg-card p-8 md:p-10 rounded-3xl border border-border relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Sword className="w-32 h-32" />
-              </div>
-              <h3 className="text-3xl font-black text-white mb-2 flex items-center gap-4">
-                <span className="text-primary">Round 3</span> Robot War
-              </h3>
-              <p className="text-muted-foreground mb-6 font-mono">Time Limit: 60 Seconds</p>
-              <p className="text-lg text-gray-300 mb-6">
-                Pure combat. Push your opponent completely out of the arena. Speed is rewarded.
-              </p>
-              <div className="overflow-x-auto rounded-xl border border-border">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-secondary/50 text-gray-300 uppercase font-bold">
-                    <tr>
-                      <th className="p-4 border-b border-border">Win Time</th>
-                      <th className="p-4 border-b border-border">Under 10s</th>
-                      <th className="p-4 border-b border-border">Under 20s</th>
-                      <th className="p-4 border-b border-border">Under 35s</th>
-                      <th className="p-4 border-b border-border">Under 50s</th>
-                      <th className="p-4 border-b border-border text-muted-foreground">Tie Game</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-card">
-                    <tr>
-                      <td className="p-4 font-bold text-white border-r border-border bg-secondary/20">Points</td>
-                      <td className="p-4 text-primary font-bold text-xl">50 pts</td>
-                      <td className="p-4 text-primary font-bold text-lg">40 pts</td>
-                      <td className="p-4 text-primary font-bold">25 pts</td>
-                      <td className="p-4 text-primary font-bold">10 pts</td>
-                      <td className="p-4 text-muted-foreground font-bold">30 pts each</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Awards */}
-      <section className="py-24 relative">
-        <div className="container px-4 mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <h2 className="text-4xl font-bold uppercase tracking-tight text-white mb-4">Glory Awaits</h2>
-            <div className="h-1 w-24 bg-primary mx-auto rounded-full" />
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <div className="bg-card p-6 rounded-2xl border border-border">
-              <Award className="w-10 h-10 text-gray-400 mx-auto mb-4" />
-              <h3 className="font-bold text-lg">Champion<br/><span className="text-muted-foreground">Block Push</span></h3>
-            </div>
-            <div className="bg-card p-6 rounded-2xl border border-border">
-              <Award className="w-10 h-10 text-gray-400 mx-auto mb-4" />
-              <h3 className="font-bold text-lg">Champion<br/><span className="text-muted-foreground">Block Pull</span></h3>
-            </div>
-            <div className="bg-card p-6 rounded-2xl border border-border">
-              <Award className="w-10 h-10 text-gray-400 mx-auto mb-4" />
-              <h3 className="font-bold text-lg">Champion<br/><span className="text-muted-foreground">Robot War</span></h3>
-            </div>
-            <div className="bg-gradient-to-br from-primary/20 to-card p-6 rounded-2xl border border-primary/50 ring-2 ring-primary/20 relative overflow-hidden">
-              <Trophy className="w-10 h-10 text-primary mx-auto mb-4 relative z-10" />
-              <h3 className="font-bold text-lg text-white relative z-10">ROBO XTREME<br/><span className="text-primary">CHAMPION 2026</span></h3>
-              <p className="text-xs text-muted-foreground mt-2 relative z-10">Highest Cumulative Score</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Robot Specifications */}
-      <section className="py-24 bg-secondary/30 border-y border-border">
-        <div className="container px-4 mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold uppercase tracking-tight text-white mb-4">Robot Specifications</h2>
-            <div className="h-1 w-24 bg-primary mx-auto rounded-full mt-6" />
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 gap-6 mb-8">
-            <div className="flex items-center gap-4 bg-card p-6 rounded-xl border border-border">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                <span className="font-bold text-primary">WT</span>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground uppercase tracking-wider font-bold">Max Weight</p>
-                <p className="text-2xl font-black text-white">3.5 KG</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 bg-card p-6 rounded-xl border border-border">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                <span className="font-bold text-primary">DIM</span>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground uppercase tracking-wider font-bold">Dimensions (L×W×H)</p>
-                <p className="text-2xl font-black text-white">30 × 25 × 25 cm</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 bg-card p-6 rounded-xl border border-border">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                <span className="font-bold text-primary">PWR</span>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground uppercase tracking-wider font-bold">Max Power</p>
-                <p className="text-2xl font-black text-white">12V</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 bg-card p-6 rounded-xl border border-border">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                <span className="font-bold text-primary">CTL</span>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground uppercase tracking-wider font-bold">Control Type</p>
-                <p className="text-xl font-bold text-white">Wireless or Wired</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-destructive/10 border border-destructive/30 p-6 rounded-xl">
-            <h4 className="text-destructive font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
-              <ShieldAlert className="w-5 h-5" /> Mandatory Requirements
-            </h4>
-            <ul className="text-gray-300 space-y-2">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span>Robot must have a <strong>10mm hook hole</strong> (center front/back) for Round 2.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span><strong>Same robot must be used</strong> for all 3 rounds. No part swaps allowed between rounds.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. General Rules */}
-      <section className="py-24">
-        <div className="container px-4 mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <h2 className="text-3xl font-bold uppercase tracking-tight text-white mb-4">Official Rules of Engagement</h2>
-            <div className="h-1 w-24 bg-primary rounded-full" />
-          </motion.div>
-
-          <div className="bg-card border border-border rounded-3xl p-8 md:p-12">
-            <ol className="list-decimal list-inside space-y-4 text-gray-300 text-lg leading-relaxed marker:text-primary marker:font-bold">
-              <li>Participants must build their own robots. No commercial or pre-built bots allowed.</li>
-              <li>No fire, explosives, blades, or dangerous weapons permitted in the arena.</li>
-              <li>No modifications to the robot are allowed inside the arena.</li>
-              <li>Teams must report to the venue 30 minutes before their scheduled time.</li>
-              <li>Robots must be inspected and weighed before the competition begins.</li>
-              <li>Only the 2 student participants are allowed near the arena during matches.</li>
-              <li>Mentors may only provide verbal guidance from the designated viewing area.</li>
-              <li>Any robot damaging the arena intentionally will be disqualified.</li>
-              <li>Wired robots must ensure cables do not entangle the opponent or the arena elements.</li>
-              <li>In the event of a tie, the robot with the lower weight wins the advantage.</li>
-              <li>If a robot is immobilized for 10 seconds, it loses the round.</li>
-              <li>Unsportsmanlike conduct will result in immediate disqualification of the entire team.</li>
-              <li>The judges' decision is final and binding under all circumstances.</li>
-              <li>Organizers reserve the right to modify rules if necessary for safety or fairness.</li>
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Registration CTA */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/10"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px] opacity-20"></div>
-        
-        <div className="container relative z-10 px-4 mx-auto text-center">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-6">
-              Ready to Compete?
+            <h2 className="font-display font-black text-5xl md:text-6xl uppercase text-white tracking-tight">
+              Enter the Arena
             </h2>
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto">
-              Gather your team. Build your bot. Claim the title of the first RoboXtreme Champion in Kolkata.
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Users,
+                title: "Grade 6 & Above",
+                desc: "Open to all middle and high school students with passion for building robots.",
+                color: "#00a8ff"
+              },
+              {
+                icon: ShieldAlert,
+                title: "Team of 3",
+                desc: "2 Student Participants + 1 Official School Mentor. Multiple teams per school welcome.",
+                color: "#fac800"
+              },
+              {
+                icon: Target,
+                title: "Free Entry",
+                desc: "Zero participation fee. Every team gets a fair shot at glory — no barriers.",
+                color: "#ff4444"
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="relative p-8 rounded-md border bg-card overflow-hidden group hover:scale-[1.02] transition-all duration-300"
+                style={{ borderColor: `${item.color}30` }}
+              >
+                <div
+                  className="absolute top-0 left-0 right-0 h-0.5"
+                  style={{ background: item.color }}
+                />
+                <div
+                  className="w-14 h-14 rounded-md flex items-center justify-center mb-5"
+                  style={{ background: `${item.color}15`, border: `1px solid ${item.color}30` }}
+                >
+                  <item.icon className="w-7 h-7" style={{ color: item.color }} />
+                </div>
+                <h3 className="font-display font-black text-2xl text-white uppercase tracking-wide mb-3">{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          SECTION DIVIDER
+      ═══════════════════════════════════════════════════ */}
+      <div className="relative py-10 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        </div>
+        <div className="relative bg-background px-8 text-center">
+          <div className="font-display font-black text-4xl md:text-5xl uppercase tracking-[0.1em] text-white/10">
+            THE 3 ROUNDS
+          </div>
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════
+          ROUND 1 — BLOCK PUSH
+      ═══════════════════════════════════════════════════ */}
+      <section className="relative overflow-hidden">
+        {/* Full bleed image with overlay */}
+        <div className="relative">
+          <img
+            src={blockPushImg}
+            alt="Block Push Challenge"
+            className="w-full object-cover object-center"
+            style={{ maxHeight: "600px" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+
+          {/* Overlay content */}
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-6xl mx-auto px-6 w-full">
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                variants={stagger}
+                className="max-w-lg"
+              >
+                <motion.div variants={fadeUp} className="mb-3">
+                  <span className="font-display font-black text-sm tracking-[0.2em] uppercase bg-[#00a8ff] text-[#030912] px-3 py-1.5 rounded-sm">
+                    Round 1
+                  </span>
+                </motion.div>
+                <motion.h2 variants={fadeUp} className="font-display font-black uppercase leading-none mb-2">
+                  <span className="block text-5xl md:text-7xl text-white">BLOCK</span>
+                  <span className="block text-5xl md:text-7xl" style={{ color: "#00a8ff", textShadow: "0 0 30px rgba(0,168,255,0.5)" }}>PUSH</span>
+                  <span className="block text-3xl md:text-4xl text-yellow-400 font-bold tracking-wider">CHALLENGE</span>
+                </motion.h2>
+                <motion.p variants={fadeUp} className="text-white/60 font-display text-lg mb-2">
+                  Push the Blocks. Score the Points.
+                </motion.p>
+                <motion.p variants={fadeUp} className="flex items-center gap-2 text-white/50 font-display text-sm mb-4">
+                  <Clock className="w-4 h-4 text-[#00a8ff]" /> 120 seconds match duration
+                </motion.p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scoring table below */}
+        <div className="bg-card border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-6 py-10">
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              <div>
+                <h3 className="font-display font-black text-xl uppercase text-white/70 tracking-widest mb-4">Scoring Table</h3>
+                <div className="rounded-md overflow-hidden border border-white/10">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-[#00a8ff]/15 border-b border-white/10">
+                        <th className="text-left p-3 font-display font-bold uppercase tracking-wider text-[#00a8ff] text-xs">Block Weight</th>
+                        <th className="text-center p-3 font-display font-bold uppercase tracking-wider text-[#00a8ff] text-xs">Points</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pushScoring.map((row, i) => (
+                        <tr key={i} className={`border-b border-white/5 ${i % 2 === 0 ? "bg-white/[0.02]" : ""}`}>
+                          <td className="p-3 font-display font-bold text-white">{row.weight}</td>
+                          <td className="p-3 text-center">
+                            <span className="font-display font-black text-xl" style={{ color: "#00a8ff" }}>{row.pts}</span>
+                            <span className="text-white/40 text-xs ml-1 font-display">pts</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h3 className="font-display font-black text-xl uppercase text-white/70 tracking-widest mb-4">Rules</h3>
+                {[
+                  "Push wooden blocks completely out of the arena to score",
+                  "Heavier and larger blocks carry higher point values",
+                  "Score as many points as possible within 120 seconds",
+                  "Highest cumulative score wins the round",
+                ].map((rule, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-sm bg-[#00a8ff]/20 border border-[#00a8ff]/30 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className="w-3 h-3 text-[#00a8ff]" />
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">{rule}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          ROUND 2 — BLOCK PULL
+      ═══════════════════════════════════════════════════ */}
+      <section className="relative overflow-hidden border-t border-white/5">
+        <div className="relative">
+          <img
+            src={blockPullImg}
+            alt="Block Pull Challenge"
+            className="w-full object-cover object-center"
+            style={{ maxHeight: "600px" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-background via-background/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+
+          <div className="absolute inset-0 flex items-center justify-end">
+            <div className="max-w-6xl mx-auto px-6 w-full flex justify-end">
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                variants={stagger}
+                className="max-w-lg text-right"
+              >
+                <motion.div variants={fadeUp} className="mb-3 flex justify-end">
+                  <span className="font-display font-black text-sm tracking-[0.2em] uppercase bg-red-500 text-white px-3 py-1.5 rounded-sm">
+                    Round 2
+                  </span>
+                </motion.div>
+                <motion.h2 variants={fadeUp} className="font-display font-black uppercase leading-none mb-2">
+                  <span className="block text-5xl md:text-7xl text-white">BLOCK</span>
+                  <span className="block text-5xl md:text-7xl text-red-500" style={{ textShadow: "0 0 30px rgba(255,60,60,0.5)" }}>PULL</span>
+                  <span className="block text-3xl md:text-4xl text-yellow-400 font-bold tracking-wider">CHALLENGE</span>
+                </motion.h2>
+                <motion.p variants={fadeUp} className="text-white/60 font-display text-lg mb-2">
+                  Pull with Strength. Score with Strategy.
+                </motion.p>
+                <motion.p variants={fadeUp} className="flex items-center justify-end gap-2 text-white/50 font-display text-sm mb-4">
+                  <Clock className="w-4 h-4 text-red-500" /> 120 seconds match duration
+                </motion.p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-card border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-6 py-10">
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              <div className="space-y-3">
+                <h3 className="font-display font-black text-xl uppercase text-white/70 tracking-widest mb-4">Rules</h3>
+                {[
+                  "Pull wooden blocks from the start zone into the target zone",
+                  "Blocks are tied with ropes that have hooks at one end",
+                  "Your robot MUST have a front-center hook hole (10mm diameter)",
+                  "Hooks are manually placed by participants at start of each attempt",
+                  "For wired robots, hook hole must be on the wire-exit side",
+                ].map((rule, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-sm bg-red-500/20 border border-red-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className="w-3 h-3 text-red-400" />
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">{rule}</p>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <h3 className="font-display font-black text-xl uppercase text-white/70 tracking-widest mb-4">Scoring Table</h3>
+                <div className="rounded-md overflow-hidden border border-white/10">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-red-500/15 border-b border-white/10">
+                        <th className="text-left p-3 font-display font-bold uppercase tracking-wider text-red-400 text-xs">Block Weight</th>
+                        <th className="text-center p-3 font-display font-bold uppercase tracking-wider text-red-400 text-xs">Points</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pushScoring.map((row, i) => (
+                        <tr key={i} className={`border-b border-white/5 ${i % 2 === 0 ? "bg-white/[0.02]" : ""}`}>
+                          <td className="p-3 font-display font-bold text-white">{row.weight}</td>
+                          <td className="p-3 text-center">
+                            <span className="font-display font-black text-xl text-red-400">{row.pts}</span>
+                            <span className="text-white/40 text-xs ml-1 font-display">pts</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* Arena overview image */}
+            <div className="mt-8 rounded-md overflow-hidden border border-white/10 relative">
+              <img src={arenaOverviewImg} alt="Pull Challenge Arena Overview" className="w-full object-cover rounded-md" />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                <span className="font-display font-bold text-white/70 text-xs tracking-widest uppercase">Arena Overview — Pull Challenge</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          ROUND 3 — ROBOT WAR
+      ═══════════════════════════════════════════════════ */}
+      <section className="relative overflow-hidden border-t border-white/5">
+        <div className="relative">
+          <img
+            src={robotWarImg}
+            alt="Robot War"
+            className="w-full object-cover object-center"
+            style={{ maxHeight: "650px" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/20" />
+
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={stagger}
+              className="text-center"
+            >
+              <motion.div variants={fadeUp} className="mb-4">
+                <span className="font-display font-black text-sm tracking-[0.2em] uppercase bg-yellow-400 text-black px-3 py-1.5 rounded-sm">
+                  Round 3
+                </span>
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="font-display font-black uppercase leading-none">
+                <span className="block text-6xl md:text-8xl text-white">ROBOT</span>
+                <span
+                  className="block text-7xl md:text-9xl"
+                  style={{
+                    color: "#ff3333",
+                    textShadow: "0 0 40px rgba(255,50,50,0.7), 0 0 80px rgba(255,50,50,0.3)"
+                  }}
+                >
+                  WAR
+                </span>
+              </motion.h2>
+              <motion.p variants={fadeUp} className="font-display font-bold text-2xl text-white/80 mt-2">
+                Push. Outlast. <span className="text-yellow-400">WIN!</span>
+              </motion.p>
+              <motion.p variants={fadeUp} className="flex items-center justify-center gap-2 text-white/50 font-display text-sm mt-3">
+                <Clock className="w-4 h-4 text-yellow-400" /> 60 seconds match duration
+              </motion.p>
+            </motion.div>
+          </div>
+        </div>
+
+        <div className="bg-card border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-6 py-10">
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              <div>
+                <h3 className="font-display font-black text-xl uppercase text-white/70 tracking-widest mb-4">Speed Bonus Scoring</h3>
+                <p className="text-muted-foreground text-sm mb-4">Push opponent's robot completely out of the arena. Win faster — score higher.</p>
+                <div className="rounded-md overflow-hidden border border-white/10">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-red-500/15 border-b border-white/10">
+                        <th className="text-left p-3 font-display font-bold uppercase tracking-wider text-red-400 text-xs">Win Time</th>
+                        <th className="text-center p-3 font-display font-bold uppercase tracking-wider text-red-400 text-xs">Points</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {warScoring.map((row, i) => (
+                        <tr
+                          key={i}
+                          className={`border-b border-white/5 ${row.highlight ? "bg-yellow-400/10" : i % 2 === 0 ? "bg-white/[0.02]" : ""}`}
+                        >
+                          <td className="p-3 font-display font-bold text-white">{row.time}</td>
+                          <td className="p-3 text-center">
+                            <span className={`font-display font-black text-xl ${row.highlight ? "text-yellow-400" : "text-red-400"}`}>
+                              {row.pts}
+                            </span>
+                            {typeof row.pts === "number" && (
+                              <span className="text-white/40 text-xs ml-1 font-display">pts</span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h3 className="font-display font-black text-xl uppercase text-white/70 tracking-widest mb-4">Rules</h3>
+                {[
+                  "Push the opponent's robot completely out of the arena to win",
+                  "Match duration is 60 seconds — fight until the final bell",
+                  "Faster victories earn higher points (remaining time = score)",
+                  "If neither robot exits in 60s, it's a tie — 30 points each",
+                  "Two robots, one arena. Only one can survive.",
+                ].map((rule, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-sm bg-red-500/20 border border-red-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                      <Swords className="w-3 h-3 text-red-400" />
+                    </div>
+                    <p className="text-white/70 text-sm leading-relaxed">{rule}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          AWARDS
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-20 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={stagger}
+          >
+            <motion.div variants={fadeUp} className="text-center mb-12">
+              <div className="inline-flex items-center gap-3 mb-4">
+                <div className="h-px w-12 bg-yellow-400" />
+                <span className="font-display text-sm font-bold tracking-[0.2em] uppercase text-yellow-400">Glory Awaits</span>
+                <div className="h-px w-12 bg-yellow-400" />
+              </div>
+              <h2 className="font-display font-black text-5xl md:text-6xl uppercase text-white tracking-tight">
+                Awards Structure
+              </h2>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                { title: "Champion", sub: "Block Push Challenge", icon: Target, desc: "Highest score in Round 1", color: "#00a8ff" },
+                { title: "Champion", sub: "Block Pull Challenge", icon: Target, desc: "Highest score in Round 2", color: "#ff4444" },
+                { title: "Champion", sub: "Robot War", icon: Swords, desc: "Highest score in Round 3", color: "#ff4444" },
+                { title: "ROBO XTREME", sub: "CHAMPION 2026", icon: Trophy, desc: "Highest cumulative score across all 3 rounds", color: "#fac800", mega: true },
+              ].map((award, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  className={`relative p-7 rounded-md border overflow-hidden text-center group hover:scale-[1.03] transition-all duration-300 ${award.mega ? "border-yellow-400/50 bg-gradient-to-b from-yellow-400/10 to-card" : "border-white/10 bg-card"}`}
+                >
+                  {award.mega && (
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-600" />
+                  )}
+                  <div
+                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border"
+                    style={{ background: `${award.color}15`, borderColor: `${award.color}40` }}
+                  >
+                    <award.icon className="w-8 h-8" style={{ color: award.color }} />
+                  </div>
+                  <h3 className="font-display font-black text-lg uppercase tracking-wide text-white">{award.title}</h3>
+                  <p className="font-display font-bold text-sm uppercase tracking-wider mb-3" style={{ color: award.color }}>{award.sub}</p>
+                  <p className="text-muted-foreground text-xs leading-relaxed">{award.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          ROBOT SPECIFICATIONS
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-20 border-t border-white/5 bg-white/[0.015]">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}>
+            <motion.div variants={fadeUp} className="text-center mb-12">
+              <div className="inline-flex items-center gap-3 mb-4">
+                <div className="h-px w-12 bg-[#00a8ff]" />
+                <span className="font-display text-sm font-bold tracking-[0.2em] uppercase text-[#00a8ff]">Tech Specs</span>
+                <div className="h-px w-12 bg-[#00a8ff]" />
+              </div>
+              <h2 className="font-display font-black text-5xl md:text-6xl uppercase text-white tracking-tight">
+                Robot Specifications
+              </h2>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+              {[
+                { label: "Max Weight", value: "3.5 kg", unit: "" },
+                { label: "Length", value: "30", unit: "cm max" },
+                { label: "Width", value: "25", unit: "cm max" },
+                { label: "Height", value: "25", unit: "cm max" },
+                { label: "Hook Hole Dia.", value: "10", unit: "mm" },
+                { label: "Max Power", value: "12", unit: "Volts" },
+              ].map((spec, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  className="flex items-center gap-4 p-5 rounded-md border border-white/10 bg-card hover:border-[#00a8ff]/30 transition-colors"
+                >
+                  <div className="w-2 h-10 rounded-full bg-[#00a8ff]/60 shrink-0" />
+                  <div>
+                    <p className="font-display text-xs font-bold tracking-[0.15em] uppercase text-muted-foreground">{spec.label}</p>
+                    <p className="font-display font-black text-2xl text-white">
+                      {spec.value} <span className="text-sm text-[#00a8ff] font-bold">{spec.unit}</span>
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div variants={fadeUp} className="grid md:grid-cols-2 gap-5">
+              <div className="flex items-start gap-4 p-6 rounded-md border border-[#00a8ff]/30 bg-[#00a8ff]/5">
+                <CheckCircle2 className="w-6 h-6 text-[#00a8ff] shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-display font-black text-lg uppercase tracking-wide text-white mb-1">Hook Hole Required</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Every robot must have a <strong className="text-white">10mm diameter hook hole</strong> at the center of its front or back chassis for Round 2.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-6 rounded-md border border-red-500/30 bg-red-500/5">
+                <ShieldAlert className="w-6 h-6 text-red-400 shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-display font-black text-lg uppercase tracking-wide text-white mb-1">Same Robot for All Rounds</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">You <strong className="text-white">cannot swap parts or change robots</strong> between rounds. One robot must handle all 3 challenges.</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="mt-5 p-5 rounded-md border border-white/8 bg-white/[0.02]">
+              <p className="text-center font-display font-semibold text-white/50 text-sm tracking-wide uppercase">
+                Control: Wireless or Wired — team's choice &nbsp;|&nbsp; Wired setup: wires must be long enough for full arena movement
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          GENERAL RULES
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-20 border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}>
+            <motion.div variants={fadeUp} className="text-center mb-12">
+              <div className="inline-flex items-center gap-3 mb-4">
+                <div className="h-px w-12 bg-red-400" />
+                <span className="font-display text-sm font-bold tracking-[0.2em] uppercase text-red-400">Official Rulebook</span>
+                <div className="h-px w-12 bg-red-400" />
+              </div>
+              <h2 className="font-display font-black text-5xl md:text-6xl uppercase text-white tracking-tight">
+                General Rules
+              </h2>
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="rounded-md border border-white/10 bg-card overflow-hidden">
+              {[
+                "Participants must design, build, and assemble their robots themselves. Ready-made commercial robots are not allowed.",
+                "All robots must remain within the specified dimension and weight limits throughout the entire competition.",
+                "The use of fire, flames, explosives, smoke-generating devices, corrosive substances, or any dangerous materials is strictly prohibited.",
+                "Sharp weapons, blades, spikes, projectiles, firearms, or any component that may cause injury are not allowed.",
+                "Teams must fully prepare, assemble, programme, and test their robots before entering the competition arena.",
+                "No major repairs, assembly work, or modifications will be permitted inside the competition arena unless approved by organizers.",
+                "Teams must report to the venue before their scheduled event time. Late arrivals may result in disqualification.",
+                "Participants must maintain sportsmanship and fair play throughout the competition.",
+                "Any form of cheating, intentional interference, or unsportsmanlike conduct will result in penalties or disqualification.",
+                "Participants are responsible for the safety and proper operation of their robots.",
+                "Robots must not intentionally damage the competition arena, track, equipment, or surrounding infrastructure.",
+                "Judges and event officials reserve the right to inspect any robot before or during the competition.",
+                "In case of disputes, the decision of the judges and organizers shall be final and binding.",
+                "Organizers reserve the right to modify or update rules if required to ensure safety, fairness, and smooth conduct.",
+              ].map((rule, i) => (
+                <div
+                  key={i}
+                  className={`flex items-start gap-4 p-5 ${i !== 13 ? "border-b border-white/5" : ""} hover:bg-white/[0.03] transition-colors`}
+                >
+                  <span className="font-display font-black text-2xl text-[#00a8ff]/30 w-8 shrink-0 leading-none mt-0.5">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-white/70 leading-relaxed text-sm pt-0.5">{rule}</p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          REGISTRATION CTA
+      ═══════════════════════════════════════════════════ */}
+      <section className="relative py-28 overflow-hidden border-t border-white/5">
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage: "linear-gradient(rgba(0,168,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,168,255,0.8) 1px, transparent 1px)",
+              backgroundSize: "40px 40px"
+            }}
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(0,168,255,0.08),transparent)]" />
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}>
+            <motion.div variants={fadeUp} className="mb-3">
+              <span className="font-display text-sm font-bold tracking-[0.25em] uppercase text-[#00a8ff]">Ready to Compete?</span>
+            </motion.div>
+            <motion.h2 variants={fadeUp} className="font-display font-black text-5xl md:text-7xl uppercase text-white tracking-tight mb-6 leading-none">
+              Register<br />
+              <span style={{ color: "#00a8ff", textShadow: "0 0 40px rgba(0,168,255,0.4)" }}>Your School</span>
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-white/50 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+              Kolkata's first robotics championship is here. Claim your spot before slots fill up.
+            </motion.p>
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                data-testid="button-register-cta"
+                onClick={() => window.open(FORM_LINK, "_blank")}
+                className="font-display font-black text-xl tracking-[0.12em] uppercase px-14 py-6 rounded-sm text-[#030912] bg-[#00a8ff] hover:bg-[#33bbff] transition-all duration-300"
+                style={{ boxShadow: "0 0 40px rgba(0,168,255,0.4), 0 0 80px rgba(0,168,255,0.2)" }}
+              >
+                Fill the Registration Form
+              </button>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-whatsapp-cta"
+                className="font-display font-bold text-xl tracking-[0.1em] uppercase px-10 py-6 rounded-sm border border-[#25D366]/50 text-[#25D366] hover:bg-[#25D366]/10 transition-all duration-300 flex items-center justify-center gap-3"
+              >
+                <MessageCircle className="w-5 h-5" /> Ask on WhatsApp
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          FOOTER / CONTACT
+      ═══════════════════════════════════════════════════ */}
+      <footer className="border-t border-white/8 bg-white/[0.02]">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div className="grid md:grid-cols-3 gap-10 mb-12">
+            {/* Brand */}
+            <div>
+              <div className="font-display font-black text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">
+                FunScholar Innovations Pvt. Ltd. presents
+              </div>
+              <h3 className="font-display font-black text-2xl uppercase text-white leading-tight mb-1">
+                Bharat Robotics League
+              </h3>
+              <p className="font-display font-bold text-sm text-[#00a8ff] tracking-widest uppercase mb-3">
+                Season 1 · Dangal · 2026
+              </p>
+              <p className="text-muted-foreground text-sm">Build. Battle. Conquer.</p>
+            </div>
+
+            {/* Event Info */}
+            <div>
+              <h4 className="font-display font-black text-sm uppercase tracking-widest text-muted-foreground mb-4">Event Details</h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-white/70 text-sm">
+                  <Calendar className="w-4 h-4 text-[#00a8ff] shrink-0" />
+                  <span>30 September 2026</span>
+                </div>
+                <div className="flex items-center gap-3 text-white/70 text-sm">
+                  <Clock className="w-4 h-4 text-[#00a8ff] shrink-0" />
+                  <span>9:00 AM – 5:00 PM</span>
+                </div>
+                <div className="flex items-start gap-3 text-white/70 text-sm">
+                  <MapPin className="w-4 h-4 text-[#00a8ff] shrink-0 mt-0.5" />
+                  <span>Exhibition Hall, Indian Museum, Kolkata</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-display font-black text-sm uppercase tracking-widest text-muted-foreground mb-4">Contact Us</h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-white/70 text-sm">
+                  <Users className="w-4 h-4 text-[#00a8ff] shrink-0" />
+                  <span>Risheb Bhartia</span>
+                </div>
+                <a
+                  href="tel:+919051555593"
+                  className="flex items-center gap-3 text-white/70 hover:text-white text-sm transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-[#00a8ff] shrink-0" />
+                  <span>+91 90515 55593</span>
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="link-whatsapp-footer"
+                  className="flex items-center gap-3 text-[#25D366] hover:text-[#4ddc8a] text-sm transition-colors"
+                >
+                  <MessageCircle className="w-4 h-4 shrink-0" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-muted-foreground text-xs tracking-wider">
+              © 2026 FunScholar Innovations Pvt. Ltd. All rights reserved.
             </p>
-            <Button 
-              size="lg" 
-              className="h-20 px-16 text-2xl font-black uppercase tracking-widest bg-primary hover:bg-primary/90 text-white shadow-[0_0_40px_-10px_rgba(255,69,0,0.5)] hover:shadow-[0_0_60px_-15px_rgba(255,69,0,0.7)] transition-all hover:scale-105"
+            <button
               onClick={() => window.open(FORM_LINK, "_blank")}
+              data-testid="button-register-footer"
+              className="font-display font-bold text-xs tracking-[0.15em] uppercase px-6 py-2.5 rounded-sm border border-[#00a8ff]/40 text-[#00a8ff] hover:bg-[#00a8ff]/10 transition-all duration-300"
             >
               Register Your School
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 9. Contact & Footer */}
-      <footer className="bg-card border-t border-border pt-16 pb-8">
-        <div className="container px-4 mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <h3 className="text-3xl font-black uppercase text-white mb-2">RoboXtreme</h3>
-              <p className="text-muted-foreground mb-6">Championship 2026 • Kolkata</p>
-              <div className="flex flex-col gap-2 text-gray-400">
-                <p>Organised by</p>
-                <p className="text-white font-bold text-lg">Funscholar Innovations Pvt. Ltd.</p>
-              </div>
-            </div>
-            
-            <div className="md:text-right bg-secondary/50 p-8 rounded-2xl border border-border">
-              <h4 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Direct Contact</h4>
-              <p className="text-xl text-white font-medium mb-1">Risheb Bhartia</p>
-              <p className="text-primary font-mono text-xl mb-6">+91 90515 55593</p>
-              
-              <Button 
-                variant="outline" 
-                className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
-                onClick={() => window.open(WHATSAPP_LINK, "_blank")}
-              >
-                <MessageCircle className="w-4 h-4 mr-2" /> Chat on WhatsApp
-              </Button>
-            </div>
-          </div>
-          
-          <div className="text-center pt-8 border-t border-border text-sm text-muted-foreground">
-            &copy; 2026 Funscholar Innovations Pvt. Ltd. All rights reserved. Bharat Robotics League.
+            </button>
           </div>
         </div>
       </footer>
