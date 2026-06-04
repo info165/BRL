@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "RoboXtreme Championship 2026"
+version = "1.0.0"
+id = "artifacts/roboxtreme"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20682
+
+[services.development]
+run = "pnpm --filter @workspace/roboxtreme run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/roboxtreme", "run", "build" ]
+publicDir = "artifacts/roboxtreme/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20682"
+BASE_PATH = "/"
