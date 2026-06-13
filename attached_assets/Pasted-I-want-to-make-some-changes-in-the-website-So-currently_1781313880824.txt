@@ -1,0 +1,23 @@
+I want to make some changes in the website. So currently, if you see, there is only one single page in the entire website. So I want to divide it into several different pages. 
+
+The main home page is the first page. Then we have several other pages, the details of which are given below. 
+
+I want a page where the details for the different competitions, basically there are three different rounds of competitions in this. So every single round or every single challenge will have a separate page of its own. And in that page, we will be giving the details of that particular competition or that particular round. And in the main home page, we just need to mention the name of that particular round along with an image. The main thumbnail image should only be there, not the image of the arena. And the objective, just a one line of the objective can be there in the home page. There should also be button for "Click to know more", and this button should take the user to the specific page of that particular Round. Rest everything, all details of that round, including the duration, the scoring table, the image of the arena, and the point-wise details about the competition, all these kinds of things should be there in the specific page that is allotted to that particular round. Okay, so basically there should be three different pages, one for Block Pull Challenge, one for Block Pull Challenge, and one for Robot War. 
+
+Awards Structure page should be in the home page itself. No separate page needed for it.
+
+Then there should be another page for Robot Specifications, in which the specifications of the bot that the teams have to meet, along with the image which we have created for the placement of the hole in the bot, all these things should be there in that particular page. 
+
+Another page for the General Rules and Guidelines. 
+
+And then there should be one page, the Registration Page, which should actually have come before the Robot Specifications, and General Guidelines pages. There should be a button "Register Now" in the home page that will take the user to the Registration Page. So in this Registration page, we need to mention the last date of registration, the criteria for registration (Grade 6 and above, Team Size: 2 Participants + 1 Mentor • Multiple teams allowed per school • Free Participation), the registration link should also be there. And also, just for your information, there are two different rounds of registration. The first stage of registration is a Pre-Registration phase, in which the teams will show intent to participate, and it has a last date, so mention that last date as well. And then there is a final registration in which participant details need to be mentioned, which also has a final registration date. So mention both the registration dates. As of now, you can add the link for the Pre-Registration, and because the final date of registration, because the final registration is not started yet, so you can just simply write that the final registrations will start from this date and will end at this date. So write in that manner. And for the preliminary registration phase, you can say that it is already started and just mention the last date of the preliminary round of registration and also give the link for that.
+
+Preliminary Registration already started.
+
+Last Date for Pre-Registration: 10th September 
+
+Final Registration starts from: 20th July 
+
+Last Date for Final Registration: 10th September 
+
+Please make the necessary changes.

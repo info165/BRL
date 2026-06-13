@@ -1,0 +1,41 @@
+I have shared with you the PDF that contains all the information about the competition that we are organizing. So the website that you have created is basically the website for this particular competition. So I want you to see this PDF and see the template, the layout, the theme, all those things. Just have a look at the PDF properly and I want you to match the layout of the website and make it similar to how it is looking in the PDF. Check the logo of Funscholar where it is written "Funscholar presents". Also the font styles and sizes in the website should be similar to that of the pdf. That is point number one.
+
+I am sharing the name and the theme of the competition which needs to be mentioned in the website:
+Funscholar (use the Funscholar logo) presents 
+Bharat Robotics League 2026
+This Season's Theme: Dangal of Robots 
+
+Date and time given in the website are correct. Change the venue to "Exhibition Hall, Indian Museum, Kolkata"
+
+Block Points Table for both Round 1:
+Block weights: points
+200gm: 10 points 
+500 gm: 20 points
+750 gm: 30 points
+1 kg: 40 points 
+1.5 kg: 50 points
+2 kg: 60 points 
+
+Block Points Table for both Round 2:
+Block weights: points
+200gm: 10 points 
+500 gm: 20 points
+750 gm: 30 points
+1 kg: 40 points 
+1.5 kg: 50 points
+2 kg: 60 points 
+
+For Round 3 Robot War, scoring points = Remaining Time * 3
+Win in 10 seconds: (60-10)*3 = 150 points 
+Win in 20 seconds: (60-20)*3 = 120 points 
+Win in 30 seconds: (60-30)*3 = 90 points 
+Win in 40 seconds: (60-40)*3 = 60 points 
+Win in 50 seconds: (60-50)*3 = 30 points 
+Tie: 20*3 = 60 points each
+
+I have also attached an image which is about a Technical Specification: Pull Block Challenge Required Chassis Modification. It shows how the participants need to create a hole in the chassis. Please include that image in the website where the Robot Specifications are mentioned.
+
+Also in the Pull Block Challenge section in the website, there are currently 4 points written (in the form of bullet points) just below the Scoring Table and the image of the arena. There is a mistake in the 3rd point, which states that "Robots MUST have a front-center hook hole (10 mm diameter)." The correct line is: "Robots MUST have a hook hole (10 mm diameter) in the back-center of the chassis, as specified in the Technical Robot Specifications given below."
+
+Another point has been added in the General Guidelines:
+"Every team must bring additional rechargeable batteries to the event." You can refer to the pdf I have shared, and add this point in the General Guidelines in the website as well.
