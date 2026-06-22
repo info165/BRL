@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import funscholarLogo from "@assets/Funsholar_New_Logo_Final-03_1782135255922.jpg";
 
 const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
 
@@ -31,13 +32,19 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 shrink-0 group">
+        <Link href="/" className="flex items-center gap-2.5 shrink-0 group opacity-90 hover:opacity-100 transition-opacity">
+          {/* FunScholar logo pill */}
+          <div className="bg-white rounded px-1.5 py-0.5 shrink-0">
+            <img src={funscholarLogo} alt="FunScholar" className="h-3.5 w-auto block" />
+          </div>
           <div className="flex flex-col leading-none">
-            <span className="font-display font-black text-[10px] tracking-[0.25em] uppercase text-muted-foreground group-hover:text-[#00a8ff] transition-colors">
-              FunScholar presents
+            <span className="font-display font-bold text-[9px] tracking-[0.28em] uppercase text-white/40">
+              presents
             </span>
-            <span className="font-display font-black text-base uppercase tracking-wide text-white leading-none">
-              Bharat <span style={{ color: "#00a8ff" }}>Robotics</span> <span style={{ color: "#fac800" }}>League</span>
+            <span className="font-display font-black text-sm uppercase tracking-wide leading-none flex items-center gap-0">
+              <span style={{ color: "#FF9933" }}>Bharat </span>
+              <span style={{ color: "#e8e8e8" }}>&nbsp;Robotics </span>
+              <span style={{ color: "#138808" }}>&nbsp;League</span>
             </span>
           </div>
         </Link>
