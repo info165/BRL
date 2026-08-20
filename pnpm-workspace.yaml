@@ -74,6 +74,16 @@ onlyBuiltDependencies:
   - msw
   - unrs-resolver
 
+# pnpm 11 replaced onlyBuiltDependencies with allowBuilds. Without this, an
+# install fails outright with ERR_PNPM_IGNORED_BUILDS rather than warning, so
+# esbuild never unpacks its platform binary and the Vite build cannot run.
+# Same allowlist as above, expressed in the key pnpm 11 actually reads.
+allowBuilds:
+  '@swc/core': true
+  esbuild: true
+  msw: true
+  unrs-resolver: true
+
 overrides:
   # replit uses linux-x64 only, we can exclude all other platforms
   "esbuild>@esbuild/darwin-arm64": "-"
