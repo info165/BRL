@@ -47,3 +47,6 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# design reference screenshots (not part of the build)
+/ss

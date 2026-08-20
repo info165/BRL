@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { Calendar, Users, ChevronRight, CheckCircle2, MessageCircle, Clock, ArrowLeft, AlertCircle } from "lucide-react";
+import { Calendar, Users, ChevronRight, CheckCircle2, MessageCircle, Clock, ArrowLeft } from "lucide-react";
 import Nav from "@/components/Nav";
 
 const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
@@ -56,7 +56,7 @@ export default function Registration() {
             </div>
             <div className="p-7 grid sm:grid-cols-2 gap-4">
               {[
-                "Grade 6 and above",
+                "Grade 7 and above",
                 "Team Size: 2 Participants + 1 Mentor",
                 "Multiple teams allowed per school",
                 "Free Participation — no entry fee",
@@ -70,23 +70,21 @@ export default function Registration() {
           </motion.div>
         </motion.div>
 
-        {/* Registration Phases */}
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-2 gap-6">
+        {/* Registration */}
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}>
 
-          {/* Phase 1 — Pre-Registration */}
           <motion.div variants={fadeUp}
             className="relative rounded-md border overflow-hidden"
             style={{ borderColor: "#00a8ff40", background: "linear-gradient(135deg, rgba(0,168,255,0.06) 0%, rgba(0,168,255,0.02) 100%)" }}>
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#00a8ff]" />
             <div className="p-7">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-display font-black text-xs tracking-[0.2em] uppercase bg-[#00a8ff] text-[#030912] px-3 py-1 rounded-sm">Phase 1</span>
                 <span className="inline-flex items-center gap-1.5 bg-green-500/20 border border-green-500/30 text-green-400 text-xs font-display font-bold px-2 py-0.5 rounded-sm uppercase tracking-wide">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Open Now
                 </span>
               </div>
-              <h3 className="font-display font-black text-2xl uppercase text-white tracking-tight mb-1">Pre-Registration</h3>
-              <p className="text-white/50 text-sm mb-5 leading-relaxed">Show your intent to participate. Register your school and team early to secure your spot.</p>
+              <h3 className="font-display font-black text-2xl uppercase text-white tracking-tight mb-1">Registration</h3>
+              <p className="text-white/50 text-sm mb-5 leading-relaxed">Register your school and team for Bharat Robotics League 2026.</p>
 
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3 text-sm">
@@ -95,75 +93,30 @@ export default function Registration() {
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Calendar className="w-4 h-4 text-red-400 shrink-0" />
-                  <span className="font-display font-semibold text-white/70">Last Date: <span className="text-white">10th September 2026</span></span>
+                  <span className="font-display font-semibold text-white/70">Last Date: <span className="text-white">15th September 2026</span></span>
                 </div>
               </div>
 
               <button
                 onClick={() => window.open(FORM_LINK, "_blank")}
-                data-testid="button-register-phase1"
+                data-testid="button-register"
                 className="w-full py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-[#030912] rounded-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
                 style={{ background: "linear-gradient(135deg,#00a8ff,#0077cc)", boxShadow: "0 0 20px rgba(0,168,255,0.25)" }}
               >
-                Pre-Register Now <ChevronRight className="w-4 h-4" />
+                Register Now <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
-
-          {/* Phase 2 — Final Registration */}
-          <motion.div variants={fadeUp}
-            className="relative rounded-md border overflow-hidden"
-            style={{ borderColor: "#ff330040", background: "linear-gradient(135deg, rgba(255,80,0,0.05) 0%, rgba(255,80,0,0.02) 100%)" }}>
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-red-500" />
-            <div className="p-7">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-display font-black text-xs tracking-[0.2em] uppercase bg-red-500 text-white px-3 py-1 rounded-sm">Phase 2</span>
-                <span className="inline-flex items-center gap-1.5 bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 text-xs font-display font-bold px-2 py-0.5 rounded-sm uppercase tracking-wide">
-                  <Clock className="w-3 h-3" /> Coming Soon
-                </span>
-              </div>
-              <h3 className="font-display font-black text-2xl uppercase text-white tracking-tight mb-1">Final Registration</h3>
-              <p className="text-white/50 text-sm mb-5 leading-relaxed">Full participant details submission. Confirm your team roster and complete the registration process.</p>
-
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center gap-3 text-sm">
-                  <Calendar className="w-4 h-4 text-yellow-400 shrink-0" />
-                  <span className="font-display font-semibold text-white/70">Opens: <span className="text-yellow-400">20th July 2026</span></span>
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <Calendar className="w-4 h-4 text-red-400 shrink-0" />
-                  <span className="font-display font-semibold text-white/70">Last Date: <span className="text-white">10th September 2026</span></span>
-                </div>
-              </div>
-
-              <div className="w-full py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-white/40 rounded-sm border border-white/10 text-center">
-                Registration Opens 20 July
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Important note */}
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-          className="flex items-start gap-4 p-5 rounded-md border border-yellow-400/25 bg-yellow-400/5">
-          <AlertCircle className="w-5 h-5 text-yellow-400 shrink-0 mt-0.5" />
-          <div>
-            <p className="font-display font-black text-sm uppercase tracking-wider text-yellow-400 mb-1">Important</p>
-            <p className="text-white/60 text-sm leading-relaxed">
-              Pre-Registration is required to confirm intent. Final Registration (opening 20th July) will require complete participant details, school information, and mentor contact. Both phases close on <strong className="text-white">10th September 2026</strong>.
-            </p>
-          </div>
         </motion.div>
 
         {/* Event details recap */}
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="rounded-md border border-white/10 bg-card p-7">
           <h3 className="font-display font-black text-lg uppercase tracking-wider text-white/60 mb-5">Event Details</h3>
-          <div className="grid sm:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 gap-5">
             {[
-              { label: "Event Date", value: "30 September 2026" },
-              { label: "Time", value: "9:00 AM – 5:00 PM" },
-              { label: "Venue", value: "Exhibition Hall, Indian Museum, Kolkata" },
+              { label: "Event Date", value: "29 September 2026" },
+              { label: "Time", value: "9:00 AM – 4:00 PM" },
             ].map((item, i) => (
               <div key={i}>
                 <p className="font-display text-xs font-bold tracking-[0.15em] uppercase text-muted-foreground mb-1">{item.label}</p>

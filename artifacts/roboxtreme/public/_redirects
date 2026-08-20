@@ -1,0 +1,5 @@
+# Cloudflare Pages SPA fallback.
+# The site routes on the client (wouter), so only /index.html exists on disk.
+# Without this, loading /registration directly would 404 instead of booting
+# the app. 200 rewrites rather than redirects, so the URL stays intact.
+/*    /index.html   200

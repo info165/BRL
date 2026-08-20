@@ -66,7 +66,7 @@ export default function RoundPush() {
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="p-6 rounded-md border border-[#00a8ff]/20 bg-[#00a8ff]/5">
           <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#00a8ff] mb-2">Objective</p>
-          <p className="text-white font-display font-semibold text-lg">Push wooden blocks out of the arena to score points. Heavier blocks carry higher point values.</p>
+          <p className="text-white font-display font-semibold text-lg">Push Weight Blocks out of the arena to score points. Heavier blocks carry higher point values.</p>
         </motion.div>
 
         {/* Scoring + Arena */}

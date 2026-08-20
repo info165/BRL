@@ -66,7 +66,7 @@ export default function RoundPull() {
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="p-6 rounded-md border border-red-500/20 bg-red-500/5">
           <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-red-400 mb-2">Objective</p>
-          <p className="text-white font-display font-semibold text-lg">Pull wooden blocks from the designated start zone into the target zone within the allotted time.</p>
+          <p className="text-white font-display font-semibold text-lg">Pull Weight Blocks from the designated start zone into the target zone within the allotted time.</p>
         </motion.div>
 
         {/* Scoring + Arena */}

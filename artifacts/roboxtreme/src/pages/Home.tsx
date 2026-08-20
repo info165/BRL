@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import {
-  Trophy, MapPin, Calendar, ChevronRight,
+  Trophy, Calendar, ChevronRight,
   MessageCircle, Clock, Crown, Flame, Users,
   CheckCircle2, Star, Swords, Target, Zap
 } from "lucide-react";
 import blockPushImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.00_1780570206668.jpeg";
 import blockPullImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_1780570206668.jpeg";
 import robotWarImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_(1)_1780570206668.jpeg";
-import roboWarArenaImg from "@assets/WhatsApp_Image_2026-06-04_at_16.59.04_1780572747087.jpeg";
-import funscholarLogo from "@assets/Funsholar_New_Logo_Final-03_1782135255922.jpg";
+import heroArenaImg from "@assets/hero-robo-war.jpg";
+import funscholarLogo from "@assets/funscholar-logo.png";
 import Nav from "@/components/Nav";
 
 const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
@@ -27,7 +27,7 @@ const rounds = [
     label: "Round 1",
     title: "Block Push",
     subtitle: "Challenge",
-    objective: "Push wooden blocks out of the arena to score points. Heavier blocks carry higher point values.",
+    objective: "Push Weight Blocks out of the arena to score points. Heavier blocks carry higher point values.",
     duration: "120 seconds",
     color: "#00a8ff",
     borderColor: "rgba(0,168,255,0.3)",
@@ -41,7 +41,7 @@ const rounds = [
     label: "Round 2",
     title: "Block Pull",
     subtitle: "Challenge",
-    objective: "Pull wooden blocks from the start zone into the target zone using your robot's hook mechanism.",
+    objective: "Pull Weight Blocks from the start zone into the target zone using your robot's hook mechanism.",
     duration: "120 seconds",
     color: "#ff3333",
     borderColor: "rgba(255,50,50,0.3)",
@@ -118,30 +118,32 @@ export default function Home() {
         {/* Background: arena image fills right half, strong left wipe */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-background" />
-          <img src={roboWarArenaImg} alt="Arena"
+          <img src={heroArenaImg} alt="Robo War arena"
             className="absolute right-0 top-0 h-full w-[55%] object-cover object-center" />
           <div className="absolute inset-0"
             style={{ background: "linear-gradient(to right, hsl(220,20%,4%) 0%, hsl(220,20%,4%) 40%, rgba(7,10,15,0.92) 55%, rgba(7,10,15,0.5) 68%, transparent 100%)" }} />
           <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-transparent to-background/90" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-28 w-full">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-12 pb-32 w-full">
           <motion.div initial="hidden" animate="show" variants={stagger} className="max-w-2xl">
 
-            {/* FunScholar logo — subtle, small */}
-            <motion.div variants={fadeUp} className="flex items-center gap-3 mb-7">
-              <div className="h-px w-8 bg-white/20" />
-              <div className="flex items-center gap-2 opacity-60 hover:opacity-80 transition-opacity">
-                <div className="bg-white rounded px-2 py-1 shrink-0">
-                  <img
-                    src={funscholarLogo}
-                    alt="FunScholar"
-                    className="h-4 w-auto block"
-                  />
+            {/* FunScholar presenter lockup */}
+            <motion.div variants={fadeUp} className="mb-8">
+              <div className="inline-flex flex-col gap-2.5">
+                <img
+                  src={funscholarLogo}
+                  alt="FunScholar"
+                  draggable={false}
+                  className="h-8 md:h-9 w-auto block select-none"
+                />
+                <div className="flex items-center gap-3">
+                  <span className="h-px flex-1 bg-gradient-to-r from-transparent to-white/25" />
+                  <span className="font-sans font-light text-[10px] md:text-[11px] tracking-[0.5em] indent-[0.5em] uppercase text-white/50 whitespace-nowrap">
+                    presents
+                  </span>
+                  <span className="h-px flex-1 bg-gradient-to-l from-transparent to-white/25" />
                 </div>
-                <span className="font-display font-bold text-[10px] tracking-[0.3em] uppercase text-white/70">
-                  presents
-                </span>
               </div>
             </motion.div>
 
@@ -246,9 +248,8 @@ export default function Home() {
             {/* Event info pills */}
             <motion.div variants={fadeUp} className="flex flex-wrap gap-3 mb-8">
               {[
-                { icon: Calendar, text: "30 Sept 2026" },
-                { icon: Clock, text: "9 AM – 5 PM" },
-                { icon: MapPin, text: "Exhibition Hall, Indian Museum, Kolkata" },
+                { icon: Calendar, text: "29 Sept 2026" },
+                { icon: Clock, text: "9:00 AM – 4:00 PM" },
               ].map((item, i) => (
                 <div key={i}
                   className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.08] px-4 py-2 rounded-sm text-sm font-display font-semibold text-white/65">
@@ -318,7 +319,7 @@ export default function Home() {
           </motion.div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: "Grade 6+", desc: "Open to students from Grade 6 and above" },
+              { title: "Grade 7+", desc: "Open to students from Grade 7 and above" },
               { title: "2 + 1", desc: "2 student participants and 1 mentor per team" },
               { title: "Multiple Teams", desc: "Schools may register more than one team" },
               { title: "Free to Join", desc: "Zero entry fee — free participation for all" },
@@ -407,11 +408,11 @@ export default function Home() {
               <div>
                 <motion.p variants={fadeUp} className="font-display text-xs font-bold tracking-[0.25em] uppercase text-red-400 mb-2">Join the League</motion.p>
                 <motion.h3 variants={fadeUp} className="font-display font-black text-3xl md:text-4xl uppercase text-white leading-none">
-                  Pre-Registration<br /><span className="text-white/40">is Open Now</span>
+                  Registration<br /><span className="text-white/40">is Open Now</span>
                 </motion.h3>
                 <motion.div variants={fadeUp} className="flex items-center gap-2 mt-3 text-sm font-display text-white/40">
                   <Calendar className="w-4 h-4 text-red-400" />
-                  Last Date: <strong className="text-white">10 September 2026</strong>
+                  Last Date: <strong className="text-white">15th September 2026</strong>
                 </motion.div>
               </div>
               <motion.div variants={fadeUp} className="flex flex-col items-center gap-3 shrink-0">
@@ -500,7 +501,18 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between gap-8 mb-10">
             <div>
-              <p className="font-display font-black text-[10px] tracking-[0.25em] uppercase text-white/30 mb-1">FunScholar Presents</p>
+              <div className="flex items-center gap-3 mb-4">
+                <img
+                  src={funscholarLogo}
+                  alt="FunScholar"
+                  draggable={false}
+                  className="h-7 w-auto block select-none"
+                />
+                <span className="h-4 w-px bg-white/15 shrink-0" />
+                <span className="font-sans font-light text-[9px] tracking-[0.4em] indent-[0.4em] uppercase text-white/40 whitespace-nowrap">
+                  presents
+                </span>
+              </div>
               <h4 className="font-display font-black text-2xl uppercase">
                 <span className="text-white">Bharat </span>
                 <span style={{ color: "#00a8ff" }}>Robotics </span>
@@ -536,7 +548,6 @@ export default function Home() {
                   <MessageCircle className="w-4 h-4" /> +91 90515 55593
                 </a>
                 <p className="font-display text-xs text-white/30 uppercase tracking-wide">FunScholar Innovations Pvt. Ltd.</p>
-                <p className="font-display text-xs text-white/25 mt-1">Exhibition Hall, Indian Museum, Kolkata</p>
               </div>
             </div>
           </div>
