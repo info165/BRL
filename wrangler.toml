@@ -6,6 +6,6 @@
 # static output to dist/public. Build command (set in Pages → Settings):
 #   pnpm install && pnpm --filter @workspace/roboxtreme run build
 
-name = "bharat-robotics-league"
+name = "brl"
 pages_build_output_dir = "artifacts/roboxtreme/dist/public"
 compatibility_date = "2026-08-20"
