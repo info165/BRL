@@ -412,7 +412,7 @@ export default function Home() {
                 </motion.h3>
                 <motion.div variants={fadeUp} className="flex items-center gap-2 mt-3 text-sm font-display text-white/40">
                   <Calendar className="w-4 h-4 text-red-400" />
-                  Last Date: <strong className="text-white">15th September 2026</strong>
+                  Last Date: <strong className="text-white">11th September 2026</strong>
                 </motion.div>
               </div>
               <motion.div variants={fadeUp} className="flex flex-col items-center gap-3 shrink-0">

@@ -93,7 +93,7 @@ export default function Registration() {
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Calendar className="w-4 h-4 text-red-400 shrink-0" />
-                  <span className="font-display font-semibold text-white/70">Last Date: <span className="text-white">15th September 2026</span></span>
+                  <span className="font-display font-semibold text-white/70">Last Date: <span className="text-white">11th September 2026</span></span>
                 </div>
               </div>
 
