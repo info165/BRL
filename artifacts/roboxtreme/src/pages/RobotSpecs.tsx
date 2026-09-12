@@ -19,7 +19,7 @@ const specs = [
   { label: "Robot Height", value: "25", unit: "cm max (from ground)" },
   { label: "Hook Hole Diameter", value: "10", unit: "mm" },
   { label: "Hook Hole Location", value: "Back-center", unit: "of chassis" },
-  { label: "Power Limit", value: "12", unit: "Volts max" },
+  { label: "Power Limit", value: "12V", unit: "max for robot drive", note: "Additional mechanisms may use separate power sources." },
 ];
 
 export default function RobotSpecs() {
@@ -73,6 +73,9 @@ export default function RobotSpecs() {
                   <p className="font-display font-black text-2xl text-white leading-tight">
                     {spec.value} <span className="text-sm text-[#00a8ff] font-bold">{spec.unit}</span>
                   </p>
+                  {spec.note && (
+                    <p className="font-display font-semibold text-sm text-white/75 leading-snug mt-1.5">{spec.note}</p>
+                  )}
                 </div>
               </motion.div>
             ))}
