@@ -27,7 +27,7 @@ const rounds = [
     label: "Round 1",
     title: "Block Push",
     subtitle: "Challenge",
-    objective: "Push Weight Blocks out of the arena to score points. Heavier blocks carry higher point values.",
+    objective: "Push Weight Blocks into the designated areas to score points. Heavier blocks carry higher point values.",
     duration: "120 seconds",
     color: "#00a8ff",
     borderColor: "rgba(0,168,255,0.3)",
@@ -41,7 +41,7 @@ const rounds = [
     label: "Round 2",
     title: "Block Pull",
     subtitle: "Challenge",
-    objective: "Pull Weight Blocks from the start zone into the target zone using your robot's hook mechanism.",
+    objective: "Hook and pull Weight Blocks to the finish line. One member hooks the block while the other drives the robot.",
     duration: "120 seconds",
     color: "#ff3333",
     borderColor: "rgba(255,50,50,0.3)",
@@ -55,8 +55,8 @@ const rounds = [
     label: "Round 3",
     title: "Robot",
     subtitle: "War",
-    objective: "Push the opponent's robot completely out of the circular arena within 60 seconds. Faster wins earn more points.",
-    duration: "60 seconds",
+    objective: "Knock the opponent into the pit within 90 seconds. In-pit scores time left × 3, out-pit × 2.",
+    duration: "90 seconds",
     color: "#fac800",
     borderColor: "rgba(250,200,0,0.3)",
     bg: "rgba(250,200,0,0.05)",
@@ -349,7 +349,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-6">
               {rounds.map((round, i) => (
                 <motion.div key={i} variants={fadeUp}
-                  className="group rounded-md overflow-hidden border transition-all duration-300 hover:scale-[1.02]"
+                  className="group flex flex-col rounded-md overflow-hidden border transition-all duration-300 hover:scale-[1.02]"
                   style={{ borderColor: round.borderColor, background: round.bg }}>
                   {/* Thumbnail image */}
                   <div className="relative overflow-hidden h-48">
@@ -364,7 +364,7 @@ export default function Home() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
+                  <div className="flex flex-col flex-1 p-6">
                     <div className="flex items-start gap-3 mb-3">
                       <round.icon className="w-5 h-5 shrink-0 mt-0.5" style={{ color: round.color }} />
                       <div>
@@ -379,7 +379,7 @@ export default function Home() {
 
                     <p className="text-white/55 text-sm leading-relaxed mb-3">{round.objective}</p>
 
-                    <div className="flex items-center gap-2 text-white/35 text-xs font-display font-semibold uppercase tracking-wide mb-5">
+                    <div className="mt-auto flex items-center gap-2 text-white/35 text-xs font-display font-semibold uppercase tracking-wide mb-5">
                       <Clock className="w-3 h-3" style={{ color: round.color }} /> {round.duration}
                     </div>
 
