@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import {
-  Trophy, Calendar, ChevronRight,
+  Trophy, Calendar, ChevronRight, MapPin,
   MessageCircle, Clock, Crown, Flame, Users,
   CheckCircle2, Star, Swords, Target, Zap
 } from "lucide-react";
@@ -224,17 +224,12 @@ export default function Home() {
               </h1>
             </motion.div>
 
-            {/* Season badge + Dangal */}
-            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-2">
+            {/* Season badge */}
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-3">
               <span className="font-display font-black text-xs tracking-[0.2em] uppercase bg-[#FF9933] text-black px-3 py-1 rounded-sm">
                 SEASON 1
               </span>
               <span className="font-display font-bold text-white/35 text-xs tracking-widest uppercase">2026</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span className="font-display font-black text-2xl tracking-wider uppercase"
-                style={{ color: "#FF9933", textShadow: "0 0 14px rgba(255,153,51,0.5)" }}>
-                DANGAL
-              </span>
             </motion.div>
 
             <motion.p variants={fadeUp} className="font-display font-bold text-sm uppercase tracking-[0.15em] text-white/40 mb-1">
@@ -257,6 +252,11 @@ export default function Home() {
                   {item.text}
                 </div>
               ))}
+              {/* Venue — highlighted so the location reads first */}
+              <div className="flex items-center gap-2 bg-[#FF9933]/[0.08] border border-[#FF9933]/40 px-4 py-2 rounded-sm text-sm font-display font-bold uppercase tracking-wide text-white">
+                <MapPin className="w-3.5 h-3.5 text-[#FF9933]" strokeWidth={2.5} />
+                Indian Museum, <span className="text-[#FF9933]">Kolkata</span>
+              </div>
             </motion.div>
 
             {/* CTAs */}
@@ -321,7 +321,7 @@ export default function Home() {
             {[
               { title: "Grade 7+", desc: "Open to students from Grade 7 and above" },
               { title: "2 + 1", desc: "2 student participants and 1 mentor per team" },
-              { title: "Multiple Teams", desc: "Schools may register more than one team" },
+              { title: "Multiple Teams", desc: "Max 2 teams per school" },
               { title: "Free to Join", desc: "Zero entry fee — free participation for all" },
             ].map((item, i) => (
               <motion.div key={i} variants={fadeUp}

@@ -58,7 +58,7 @@ export default function Registration() {
               {[
                 "Grade 7 and above",
                 "Team Size: 2 Participants + 1 Mentor",
-                "Multiple teams allowed per school",
+                "Multiple Teams (Max 2 per school) allowed",
                 "Free Participation — no entry fee",
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
@@ -113,14 +113,15 @@ export default function Registration() {
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="rounded-md border border-white/10 bg-card p-7">
           <h3 className="font-display font-black text-lg uppercase tracking-wider text-white/60 mb-5">Event Details</h3>
-          <div className="grid sm:grid-cols-2 gap-5">
+          <div className="grid sm:grid-cols-3 gap-5">
             {[
               { label: "Event Date", value: "29 September 2026" },
               { label: "Time", value: "9:00 AM – 4:00 PM" },
+              { label: "Venue", value: "Indian Museum, Kolkata" },
             ].map((item, i) => (
               <div key={i}>
-                <p className="font-display text-xs font-bold tracking-[0.15em] uppercase text-muted-foreground mb-1">{item.label}</p>
-                <p className="font-display font-bold text-white text-sm">{item.value}</p>
+                <p className="font-display text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground mb-1.5">{item.label}</p>
+                <p className="font-display font-bold text-white text-lg md:text-xl leading-snug">{item.value}</p>
               </div>
             ))}
           </div>
