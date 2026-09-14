@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowLeft, MessageCircle, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, MessageCircle, Clock } from "lucide-react";
 import Nav from "@/components/Nav";
 import blockPushImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.00_1780570206668.jpeg";
 import pushBlockArenaImg from "@assets/WhatsApp_Image_2026-06-04_at_16.55.42_1780572719510.jpeg";
@@ -8,13 +8,32 @@ import pushBlockArenaImg from "@assets/WhatsApp_Image_2026-06-04_at_16.55.42_178
 const WHATSAPP_LINK = "https://wa.me/919051555593?text=Hi%2C%20I%20want%20to%20know%20more%20about%20BRL";
 
 const scoring = [
-  { weight: "200 gm", pts: 10 },
-  { weight: "500 gm", pts: 20 },
-  { weight: "750 gm", pts: 30 },
-  { weight: "1 kg", pts: 40 },
-  { weight: "1.5 kg", pts: 50 },
-  { weight: "2 kg", pts: 60 },
+  { weight: "200 g", pts: 20 },
+  { weight: "500 g", pts: 30 },
+  { weight: "700 g", pts: 40 },
+  { weight: "1 kg", pts: 60 },
+  { weight: "2 kg", pts: 80 },
+  { weight: "4 kg", pts: 100 },
 ];
+
+const scoringRules = [
+  { text: <>Block <strong className="text-white">completely inside</strong> the designated box</>, result: "Full points" },
+  { text: <>Any part of the block <strong className="text-white">outside</strong> the box</>, result: "50% points" },
+  { text: <>Total time per run</>, result: "120 sec" },
+  { text: <>Time bonus for every <strong className="text-white">second left</strong> unused</>, result: "+1 pt / sec" },
+];
+
+type ExampleLine = { item: string; detail: string; pts: number; full?: number };
+
+const example: { scenario: string; lines: ExampleLine[] } = {
+  scenario: "A team pushes the 500 g and 1 kg blocks into the box and finishes the run in 40 seconds. The 1 kg block is completely inside, but part of the 500 g block ends up outside, so that block loses 50% of its points.",
+  lines: [
+    { item: "500 g block", detail: "Partly outside · 50% deducted", pts: 15, full: 30 },
+    { item: "1 kg block", detail: "Completely inside", pts: 60 },
+    { item: "Time bonus", detail: "120 s − 40 s = 80 s left", pts: 80 },
+  ],
+};
+const exampleTotal = example.lines.reduce((sum, l) => sum + l.pts, 0);
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
@@ -66,7 +85,7 @@ export default function RoundPush() {
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="p-6 rounded-md border border-[#00a8ff]/20 bg-[#00a8ff]/5">
           <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#00a8ff] mb-2">Objective</p>
-          <p className="text-white font-display font-semibold text-lg">Push Weight Blocks out of the arena to score points. Heavier blocks carry higher point values.</p>
+          <p className="text-white font-display font-semibold text-lg">Push Weight Blocks into the designated areas to score points. Heavier blocks carry higher point values.</p>
         </motion.div>
 
         {/* Scoring + Arena */}
@@ -79,7 +98,7 @@ export default function RoundPush() {
                 <thead>
                   <tr className="bg-[#00a8ff]/15 border-b border-white/10">
                     <th className="text-left p-4 font-display font-bold uppercase tracking-wider text-[#00a8ff] text-xs">Block Weight</th>
-                    <th className="text-center p-4 font-display font-bold uppercase tracking-wider text-[#00a8ff] text-xs">Points</th>
+                    <th className="text-center p-4 font-display font-bold uppercase tracking-wider text-[#00a8ff] text-xs">Full Points</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,7 +106,7 @@ export default function RoundPush() {
                     <tr key={i} className={`border-b border-white/5 ${i % 2 === 0 ? "bg-white/[0.02]" : ""}`}>
                       <td className="p-4 font-display font-bold text-white">{row.weight}</td>
                       <td className="p-4 text-center">
-                        <span className="font-display font-black text-2xl" style={{ color: "#00a8ff" }}>{row.pts}</span>
+                        <span className="font-display font-black text-2xl tabular-nums" style={{ color: "#00a8ff" }}>{row.pts}</span>
                         <span className="text-white/40 text-xs ml-1.5 font-display">pts</span>
                       </td>
                     </tr>
@@ -95,6 +114,7 @@ export default function RoundPush() {
                 </tbody>
               </table>
             </div>
+            <p className="mt-3 text-white/45 text-xs font-display">Half points if any part of the block is outside the box.</p>
           </motion.div>
 
           <motion.div variants={fadeUp} className="rounded-md overflow-hidden border border-[#00a8ff]/20 relative">
@@ -105,20 +125,74 @@ export default function RoundPush() {
           </motion.div>
         </motion.div>
 
-        {/* Rules */}
+        {/* Scoring Rules */}
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}>
-          <motion.h2 variants={fadeUp} className="font-display font-black text-sm uppercase tracking-[0.2em] text-white/40 mb-4">Round Rules</motion.h2>
-          <div className="space-y-3">
-            {[
-              "Different blocks have different weights — heavier blocks carry higher points.",
-              "Teams attempt to score as many points as possible within the allotted time.",
-              "Highest cumulative score wins the round.",
-            ].map((rule, i) => (
-              <motion.div key={i} variants={fadeUp} className="flex items-start gap-3 p-4 rounded-md border border-white/8 bg-card">
-                <CheckCircle2 className="w-4 h-4 text-[#00a8ff] shrink-0 mt-0.5" />
-                <p className="text-white/70 text-sm leading-relaxed">{rule}</p>
+          <motion.h2 variants={fadeUp} className="font-display font-black text-sm uppercase tracking-[0.2em] text-white/40 mb-4">Scoring Rules</motion.h2>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {scoringRules.map((rule, i) => (
+              <motion.div key={i} variants={fadeUp}
+                className="flex items-center gap-4 p-4 rounded-md border border-white/8 bg-card">
+                <span className="flex items-center justify-center w-8 h-8 shrink-0 rounded-full border border-[#00a8ff]/40 bg-[#00a8ff]/10 font-display font-black text-sm text-[#00a8ff] tabular-nums">
+                  {i + 1}
+                </span>
+                <p className="flex-1 text-white/70 text-sm leading-snug">{rule.text}</p>
+                <span className="shrink-0 font-display font-black text-sm uppercase tracking-wide text-[#00a8ff] whitespace-nowrap">
+                  {rule.result}
+                </span>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+
+        {/* Worked Example */}
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+          className="rounded-md overflow-hidden border border-[#00a8ff]/25 bg-card"
+          style={{ boxShadow: "0 0 40px rgba(0,168,255,0.08)" }}>
+          <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4 border-b border-white/8"
+            style={{ background: "linear-gradient(90deg, rgba(0,168,255,0.14) 0%, rgba(0,168,255,0) 70%)" }}>
+            <div>
+              <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#00a8ff]">Worked Example</p>
+              <h3 className="font-display font-black text-xl md:text-2xl uppercase text-white leading-tight">How a Run Is Scored</h3>
+            </div>
+            <span className="inline-flex items-center gap-1.5 font-display font-bold text-xs uppercase tracking-wider text-white/60 border border-white/10 px-3 py-1.5 rounded-sm">
+              <Clock className="w-3.5 h-3.5 text-[#00a8ff]" /> 120 sec run
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-[1fr_15rem]">
+            <div className="p-6">
+              <p className="text-white/70 text-sm md:text-base leading-relaxed mb-5">{example.scenario}</p>
+              <div className="divide-y divide-white/8 border-y border-white/8">
+                {example.lines.map((line, i) => (
+                  <div key={i} className="flex items-center justify-between gap-4 py-3">
+                    <div>
+                      <p className="font-display font-bold text-white text-base">{line.item}</p>
+                      <p className={`font-display text-xs ${line.full !== undefined ? "text-yellow-400/80" : "text-white/45"}`}>{line.detail}</p>
+                    </div>
+                    <span className="flex items-baseline gap-2 whitespace-nowrap">
+                      {line.full !== undefined && (
+                        <span className="font-display font-bold text-sm tabular-nums text-white/35 line-through">{line.full}</span>
+                      )}
+                      <span className={`font-display font-black text-xl tabular-nums ${line.full !== undefined ? "text-yellow-400" : "text-white"}`}>
+                        +{line.pts}<span className="text-white/40 text-xs font-bold ml-1">pts</span>
+                      </span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-2 p-6 text-center border-t md:border-t-0 md:border-l border-[#00a8ff]/20"
+              style={{ background: "radial-gradient(circle at 50% 40%, rgba(0,168,255,0.16), rgba(0,168,255,0.03) 70%)" }}>
+              <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-white/50">Total Score</p>
+              <p className="font-display font-black text-6xl leading-none tabular-nums"
+                style={{ color: "#00a8ff", textShadow: "0 0 30px rgba(0,168,255,0.45)" }}>
+                {exampleTotal}
+              </p>
+              <p className="font-display font-bold text-sm text-white/55 tabular-nums">
+                {example.lines.map((l) => l.pts).join(" + ")} = {exampleTotal}
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>
