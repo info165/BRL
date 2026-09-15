@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import brlLogo from "@assets/ChatGPT_Image_Jun_23,_2026_at_11_21_53_AM_1782193932043.png";
+import brlLogo from "@assets/brl-logo.png";
 
 const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
 
@@ -32,8 +32,10 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0 group opacity-90 hover:opacity-100 transition-opacity">
-          <img src={brlLogo} alt="BRL" className="h-9 w-9 rounded-lg object-cover" />
+        <Link href="/" className="flex items-center gap-3 shrink-0 group opacity-95 hover:opacity-100 transition-opacity">
+          <img src={brlLogo} alt="Bharat Robotics League"
+            className="h-14 w-14 object-contain transition-transform duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-px motion-reduce:transition-none motion-reduce:group-hover:transform-none"
+            style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.6)) drop-shadow(0 0 14px rgba(255,153,51,0.22))" }} />
           <span className="font-display font-black text-sm uppercase tracking-wide leading-none flex items-center">
             <span style={{ color: "#FF9933" }}>Bharat </span>
             <span style={{ color: "#e8e8e8" }}>&nbsp;Robotics </span>

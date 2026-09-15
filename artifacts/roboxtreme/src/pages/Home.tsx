@@ -9,6 +9,7 @@ import blockPushImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.00_17805702
 import blockPullImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_1780570206668.jpeg";
 import robotWarImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_(1)_1780570206668.jpeg";
 import heroArenaImg from "@assets/hero-robo-war.jpg";
+import GearO from "@/components/GearO";
 import funscholarLogo from "@assets/funscholar-logo.png";
 import Nav from "@/components/Nav";
 
@@ -165,8 +166,9 @@ export default function Home() {
                   BHARAT
                 </span>
 
-                {/* ROBOTICS — White / silver with Ashoka Chakra in the O */}
-                <span className="flex items-center text-[clamp(3.4rem,9.5vw,5.8rem)]">
+                {/* ROBOTICS — White / silver with a metal gear as the second O */}
+                <span className="sr-only">Robotics</span>
+                <span aria-hidden="true" className="flex items-center text-[clamp(3.4rem,9.5vw,5.8rem)]">
                   <span
                     style={{
                       background: "linear-gradient(175deg,#ffffff 0%,#d0d0d0 60%,#a0a0a0 100%)",
@@ -176,27 +178,7 @@ export default function Home() {
                       filter: "drop-shadow(0 0 14px rgba(255,255,255,0.18))"
                     }}
                   >ROB</span>
-                  {/* Ashoka Chakra replacing the O */}
-                  <span className="inline-flex items-center justify-center" style={{ margin: "0 1px" }}>
-                    <svg
-                      viewBox="0 0 40 40"
-                      style={{ width: "clamp(2.6rem,7.5vw,4.5rem)", height: "clamp(2.6rem,7.5vw,4.5rem)" }}
-                    >
-                      <circle cx="20" cy="20" r="17" fill="none" stroke="#1a40b0" strokeWidth="3"/>
-                      <circle cx="20" cy="20" r="3.5" fill="#1a40b0"/>
-                      {Array.from({ length: 24 }).map((_, i) => {
-                        const a = (i * Math.PI * 2) / 24;
-                        return (
-                          <line
-                            key={i}
-                            x1={20 + 4.2 * Math.cos(a)} y1={20 + 4.2 * Math.sin(a)}
-                            x2={20 + 14.5 * Math.cos(a)} y2={20 + 14.5 * Math.sin(a)}
-                            stroke="#1a40b0" strokeWidth="1.3"
-                          />
-                        );
-                      })}
-                    </svg>
-                  </span>
+                  <GearO glow size="clamp(2.6rem,7.5vw,4.5rem)" style={{ margin: "0 0.04em" }} />
                   <span
                     style={{
                       background: "linear-gradient(175deg,#ffffff 0%,#d0d0d0 60%,#a0a0a0 100%)",
