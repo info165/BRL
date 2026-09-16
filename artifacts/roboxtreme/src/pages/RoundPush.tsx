@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { ArrowLeft, MessageCircle, Clock } from "lucide-react";
 import Nav from "@/components/Nav";
 import blockPushImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.00_1780570206668.jpeg";
-import pushBlockArenaImg from "@assets/WhatsApp_Image_2026-06-04_at_16.55.42_1780572719510.jpeg";
+import pushBlockArenaImg from "@assets/round1-arena.jpg";
 
 const WHATSAPP_LINK = "https://wa.me/919051555593?text=Hi%2C%20I%20want%20to%20know%20more%20about%20BRL";
 
@@ -90,7 +90,7 @@ export default function RoundPush() {
 
         {/* Scoring + Arena */}
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-          className="grid lg:grid-cols-2 gap-8">
+          className="grid lg:grid-cols-2 gap-8 lg:items-center">
           <motion.div variants={fadeUp}>
             <h2 className="font-display font-black text-sm uppercase tracking-[0.2em] text-white/40 mb-4">Block Points Table</h2>
             <div className="rounded-md overflow-hidden border border-white/10">
@@ -117,10 +117,11 @@ export default function RoundPush() {
             <p className="mt-3 text-white/45 text-xs font-display">Half points if any part of the block is outside the box.</p>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="rounded-md overflow-hidden border border-[#00a8ff]/20 relative">
-            <img src={pushBlockArenaImg} alt="Block Push Arena" className="w-full object-cover" />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-              <span className="font-display font-bold text-white/60 text-xs tracking-widest uppercase">Arena Overview — Round 1</span>
+          <motion.div variants={fadeUp} className="rounded-md overflow-hidden border border-[#00a8ff]/20 bg-card">
+            <img src={pushBlockArenaImg} alt="Robo-Push Challenge arena with coloured target boxes, and examples of a block completely inside and outside the box" className="w-full object-cover" />
+            <div className="flex items-center gap-2 px-4 py-3 border-t border-[#00a8ff]/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00a8ff]" />
+              <span className="font-display font-bold text-white/75 text-xs tracking-widest uppercase">Arena Overview — Round 1</span>
             </div>
           </motion.div>
         </motion.div>

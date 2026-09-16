@@ -100,7 +100,7 @@ export default function RoundPull() {
 
         {/* Scoring + Arena */}
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-          className="grid lg:grid-cols-2 gap-8">
+          className="grid lg:grid-cols-2 gap-8 lg:items-center">
           <motion.div variants={fadeUp}>
             <h2 className="font-display font-black text-sm uppercase tracking-[0.2em] text-white/40 mb-4">Block Points Table</h2>
             <div className="rounded-md overflow-hidden border border-white/10">
@@ -126,10 +126,11 @@ export default function RoundPull() {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="rounded-md overflow-hidden border border-red-500/20 relative">
+          <motion.div variants={fadeUp} className="rounded-md overflow-hidden border border-red-500/20 bg-card">
             <img src={arenaOverviewImg} alt="Block Pull Arena" className="w-full object-cover" />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-              <span className="font-display font-bold text-white/60 text-xs tracking-widest uppercase">Arena Overview — Round 2</span>
+            <div className="flex items-center gap-2 px-4 py-3 border-t border-red-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+              <span className="font-display font-bold text-white/75 text-xs tracking-widest uppercase">Arena Overview — Round 2</span>
             </div>
           </motion.div>
         </motion.div>

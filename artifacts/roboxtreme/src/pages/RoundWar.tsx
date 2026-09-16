@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { ArrowLeft, MessageCircle, Clock } from "lucide-react";
 import Nav from "@/components/Nav";
 import robotWarImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_(1)_1780570206668.jpeg";
-import roboWarArenaImg from "@assets/WhatsApp_Image_2026-06-04_at_16.59.04_1780572747087.jpeg";
+import roboWarArenaImg from "@assets/round3-arena.jpg";
 
 const WHATSAPP_LINK = "https://wa.me/919051555593?text=Hi%2C%20I%20want%20to%20know%20more%20about%20BRL";
 
@@ -112,7 +112,7 @@ export default function RoundWar() {
 
         {/* Scoring table + Arena */}
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}
-          className="grid lg:grid-cols-2 gap-8">
+          className="grid lg:grid-cols-2 gap-8 lg:items-center">
           <motion.div variants={fadeUp}>
             <h2 className="font-display font-black text-sm uppercase tracking-[0.2em] text-white/40 mb-4">Points by Win Time</h2>
             <div className="rounded-md overflow-hidden border border-white/10">
@@ -154,10 +154,11 @@ export default function RoundWar() {
             </p>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="rounded-md overflow-hidden border border-red-500/20 relative">
-            <img src={roboWarArenaImg} alt="Robot War Arena" className="w-full object-cover" />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-              <span className="font-display font-bold text-white/60 text-xs tracking-widest uppercase">Arena Overview — Round 3 · Diameter: 3.0m</span>
+          <motion.div variants={fadeUp} className="rounded-md overflow-hidden border border-red-500/20 bg-card">
+            <img src={roboWarArenaImg} alt="Robo War arena layout: a 7 ft square arena with a 2 ft by 2 ft in-pit in the centre and the out-pit around the outside, with scoring examples" className="w-full object-cover" />
+            <div className="flex items-center gap-2 px-4 py-3 border-t border-red-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+              <span className="font-display font-bold text-white/75 text-xs tracking-widest uppercase">Arena Overview — Round 3 · 7 ft × 7 ft</span>
             </div>
           </motion.div>
         </motion.div>
