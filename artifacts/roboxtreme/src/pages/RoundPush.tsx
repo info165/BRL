@@ -50,7 +50,7 @@ export default function RoundPush() {
 
       {/* Cinematic hero image */}
       <div className="relative pt-16 overflow-hidden">
-        <img src={blockPushImg} alt="Block Push Challenge" className="w-full object-cover object-center" style={{ maxHeight: "560px" }} />
+        <img src={blockPushImg} alt="Robo Push Challenge" className="w-full object-cover object-center" style={{ maxHeight: "560px" }} />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
 
@@ -66,7 +66,7 @@ export default function RoundPush() {
                 <span className="font-display font-black text-xs tracking-[0.2em] uppercase bg-[#00a8ff] text-[#030912] px-3 py-1.5 rounded-sm">Round 1</span>
               </motion.div>
               <motion.h1 variants={fadeUp} className="font-display font-black uppercase leading-none mt-3 mb-2">
-                <span className="block text-5xl md:text-7xl text-white">BLOCK</span>
+                <span className="block text-5xl md:text-7xl text-white">ROBO</span>
                 <span className="block text-5xl md:text-7xl" style={{ color: "#00a8ff", textShadow: "0 0 30px rgba(0,168,255,0.5)" }}>PUSH</span>
                 <span className="block text-3xl md:text-4xl text-yellow-400 font-bold tracking-wider">CHALLENGE</span>
               </motion.h1>

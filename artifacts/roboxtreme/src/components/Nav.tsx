@@ -4,16 +4,15 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import brlLogo from "@assets/brl-logo.png";
 
-const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
 
 const navLinks = [
   { label: "Home", href: "/" },
   {
     label: "Rounds", href: "#",
     children: [
-      { label: "Round 1 — Block Push", href: "/round-push" },
-      { label: "Round 2 — Block Pull", href: "/round-pull" },
-      { label: "Round 3 — Robot War", href: "/round-war" },
+      { label: "Round 1 — Robo Push", href: "/round-push" },
+      { label: "Round 2 — Robo Pull", href: "/round-pull" },
+      { label: "Round 3 — Robo War", href: "/round-war" },
     ]
   },
   { label: "Registration", href: "/registration" },
@@ -74,13 +73,6 @@ export default function Nav() {
               </Link>
             )
           )}
-          <button
-            onClick={() => window.open(FORM_LINK, "_blank")}
-            className="ml-3 px-5 py-2 font-display font-black text-sm uppercase tracking-wider text-black rounded-sm transition-all hover:scale-105"
-            style={{ background: "linear-gradient(135deg,#ff3333,#ff6600)", boxShadow: "0 0 16px rgba(255,80,0,0.3)" }}
-          >
-            Register
-          </button>
         </div>
 
         {/* Mobile hamburger */}
@@ -112,9 +104,9 @@ export default function Nav() {
               {roundsOpen && (
                 <div className="pl-4 space-y-1 border-l border-white/10">
                   {[
-                    { label: "Round 1 — Block Push", href: "/round-push" },
-                    { label: "Round 2 — Block Pull", href: "/round-pull" },
-                    { label: "Round 3 — Robot War", href: "/round-war" },
+                    { label: "Round 1 — Robo Push", href: "/round-push" },
+                    { label: "Round 2 — Robo Pull", href: "/round-pull" },
+                    { label: "Round 3 — Robo War", href: "/round-war" },
                   ].map(l => (
                     <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)}
                       className="block py-2 font-display font-semibold text-xs uppercase tracking-wider text-white/60 hover:text-white">
@@ -129,11 +121,6 @@ export default function Nav() {
                 className="block py-2 font-display font-bold text-sm uppercase tracking-wider text-white/70 hover:text-white">Robot Specs</Link>
               <Link href="/rules" onClick={() => setMobileOpen(false)}
                 className="block py-2 font-display font-bold text-sm uppercase tracking-wider text-white/70 hover:text-white">General Rules</Link>
-              <button onClick={() => { window.open(FORM_LINK, "_blank"); setMobileOpen(false); }}
-                className="w-full mt-3 py-3 font-display font-black text-sm uppercase tracking-wider text-black rounded-sm"
-                style={{ background: "linear-gradient(135deg,#ff3333,#ff6600)" }}>
-                Register Now
-              </button>
             </div>
           </motion.div>
         )}

@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { Calendar, Users, ChevronRight, CheckCircle2, MessageCircle, Clock, ArrowLeft } from "lucide-react";
+import { Calendar, Users, CheckCircle2, MessageCircle, Clock, ArrowLeft } from "lucide-react";
 import Nav from "@/components/Nav";
 
-const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
 const WHATSAPP_LINK = "https://wa.me/919051555593?text=Hi%2C%20I%20want%20to%20know%20more%20about%20BRL";
 
 const fadeUp = {
@@ -79,17 +78,17 @@ export default function Registration() {
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#00a8ff]" />
             <div className="p-7">
               <div className="flex items-center gap-3 mb-4">
-                <span className="inline-flex items-center gap-1.5 bg-green-500/20 border border-green-500/30 text-green-400 text-xs font-display font-bold px-2 py-0.5 rounded-sm uppercase tracking-wide">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Open Now
+                <span className="inline-flex items-center gap-1.5 bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-display font-bold px-2 py-0.5 rounded-sm uppercase tracking-wide">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-400" /> Closed
                 </span>
               </div>
               <h3 className="font-display font-black text-2xl uppercase text-white tracking-tight mb-1">Registration</h3>
-              <p className="text-white/50 text-sm mb-5 leading-relaxed">Register your school and team for Bharat Robotics League 2026.</p>
+              <p className="text-white/50 text-sm mb-5 leading-relaxed">Registration for Bharat Robotics League 2026 is now closed.</p>
 
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3 text-sm">
-                  <Clock className="w-4 h-4 text-green-400 shrink-0" />
-                  <span className="font-display font-semibold text-white/70">Status: <span className="text-green-400">Open — Registration Started</span></span>
+                  <Clock className="w-4 h-4 text-red-400 shrink-0" />
+                  <span className="font-display font-semibold text-white/70">Status: <span className="text-red-400">Closed — Registration has ended</span></span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Calendar className="w-4 h-4 text-red-400 shrink-0" />
@@ -97,14 +96,13 @@ export default function Registration() {
                 </div>
               </div>
 
-              <button
-                onClick={() => window.open(FORM_LINK, "_blank")}
+              <div
                 data-testid="button-register"
-                className="w-full py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-[#030912] rounded-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
-                style={{ background: "linear-gradient(135deg,#00a8ff,#0077cc)", boxShadow: "0 0 20px rgba(0,168,255,0.25)" }}
+                aria-disabled="true"
+                className="w-full py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-white/40 rounded-sm border border-white/10 bg-white/[0.03] text-center cursor-not-allowed select-none"
               >
-                Register Now <ChevronRight className="w-4 h-4" />
-              </button>
+                Registration Closed
+              </div>
             </div>
           </motion.div>
         </motion.div>

@@ -60,7 +60,7 @@ export default function RoundPull() {
 
       {/* Cinematic hero image */}
       <div className="relative pt-16 overflow-hidden">
-        <img src={blockPullImg} alt="Block Pull Challenge" className="w-full object-cover object-center" style={{ maxHeight: "560px" }} />
+        <img src={blockPullImg} alt="Robo Pull Challenge" className="w-full object-cover object-center" style={{ maxHeight: "560px" }} />
         <div className="absolute inset-0 bg-gradient-to-l from-background via-background/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
 
@@ -76,7 +76,7 @@ export default function RoundPull() {
                 <span className="font-display font-black text-xs tracking-[0.2em] uppercase bg-red-500 text-white px-3 py-1.5 rounded-sm">Round 2</span>
               </motion.div>
               <motion.h1 variants={fadeUp} className="font-display font-black uppercase leading-none mt-3 mb-2">
-                <span className="block text-5xl md:text-7xl text-white">BLOCK</span>
+                <span className="block text-5xl md:text-7xl text-white">ROBO</span>
                 <span className="block text-5xl md:text-7xl text-red-500" style={{ textShadow: "0 0 30px rgba(255,60,60,0.5)" }}>PULL</span>
                 <span className="block text-3xl md:text-4xl text-yellow-400 font-bold tracking-wider">CHALLENGE</span>
               </motion.h1>
@@ -127,7 +127,7 @@ export default function RoundPull() {
           </motion.div>
 
           <motion.div variants={fadeUp} className="rounded-md overflow-hidden border border-red-500/20 bg-card">
-            <img src={arenaOverviewImg} alt="Block Pull Arena" className="w-full object-cover" />
+            <img src={arenaOverviewImg} alt="Robo Pull Arena" className="w-full object-cover" />
             <div className="flex items-center gap-2 px-4 py-3 border-t border-red-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
               <span className="font-display font-bold text-white/75 text-xs tracking-widest uppercase">Arena Overview — Round 2</span>

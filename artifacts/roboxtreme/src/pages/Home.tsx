@@ -13,7 +13,6 @@ import GearO from "@/components/GearO";
 import funscholarLogo from "@assets/funscholar-logo.png";
 import Nav from "@/components/Nav";
 
-const FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeeYRHPQggzAivKO6JZP5LWwMK8oC5EjMhGyhDnXY4w6ohwvQ/viewform?usp=preview";
 const WHATSAPP_LINK = "https://wa.me/919051555593?text=Hi%2C%20I%20want%20to%20know%20more%20about%20BRL";
 
 const fadeUp = {
@@ -26,7 +25,7 @@ const rounds = [
   {
     num: "01",
     label: "Round 1",
-    title: "Block Push",
+    title: "Robo Push",
     subtitle: "Challenge",
     objective: "Push Weight Blocks into the designated areas to score points. Heavier blocks carry higher point values.",
     duration: "120 seconds",
@@ -40,7 +39,7 @@ const rounds = [
   {
     num: "02",
     label: "Round 2",
-    title: "Block Pull",
+    title: "Robo Pull",
     subtitle: "Challenge",
     objective: "Hook and pull Weight Blocks to the finish line. One member hooks the block while the other drives the robot.",
     duration: "120 seconds",
@@ -54,7 +53,7 @@ const rounds = [
   {
     num: "03",
     label: "Round 3",
-    title: "Robot",
+    title: "Robo",
     subtitle: "War",
     objective: "Knock the opponent into the pit within 90 seconds. In-pit scores time left × 3, out-pit × 2.",
     duration: "90 seconds",
@@ -70,21 +69,21 @@ const rounds = [
 const awards = [
   {
     tier: "Round Champion",
-    title: "Block Push Champion",
+    title: "Robo Push Champion",
     criteria: "Highest score in Round 1",
     color: "#00a8ff",
     icon: Target,
   },
   {
     tier: "Round Champion",
-    title: "Block Pull Champion",
+    title: "Robo Pull Champion",
     criteria: "Highest score in Round 2",
     color: "#ff3333",
     icon: Zap,
   },
   {
     tier: "Round Champion",
-    title: "Robot War Champion",
+    title: "Robo War Champion",
     criteria: "Highest score in Round 3",
     color: "#fac800",
     icon: Swords,
@@ -243,13 +242,12 @@ export default function Home() {
 
             {/* CTAs */}
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
-              <button
+              <div
                 data-testid="button-register-hero"
-                onClick={() => window.open(FORM_LINK, "_blank")}
-                className="flex items-center gap-2 px-8 py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-black rounded-sm transition-all hover:scale-105 hover:brightness-110"
-                style={{ background: "linear-gradient(135deg,#ff3333,#ff6600)", boxShadow: "0 0 30px rgba(255,80,0,0.4)" }}>
-                Register Your School <ChevronRight className="w-4 h-4" />
-              </button>
+                aria-disabled="true"
+                className="flex items-center gap-2 px-8 py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-white/45 rounded-sm border border-white/10 bg-white/[0.03] cursor-not-allowed select-none">
+                Registration Closed
+              </div>
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2 px-8 py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-[#25D366] rounded-sm border border-[#25D366]/40 hover:bg-[#25D366]/10 transition-all">
                 <MessageCircle className="w-4 h-4" /> WhatsApp
@@ -388,9 +386,9 @@ export default function Home() {
               style={{ backgroundImage: "radial-gradient(circle, rgba(255,80,0,0.8) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 px-10 py-10">
               <div>
-                <motion.p variants={fadeUp} className="font-display text-xs font-bold tracking-[0.25em] uppercase text-red-400 mb-2">Join the League</motion.p>
+                <motion.p variants={fadeUp} className="font-display text-xs font-bold tracking-[0.25em] uppercase text-red-400 mb-2">Bharat Robotics League 2026</motion.p>
                 <motion.h3 variants={fadeUp} className="font-display font-black text-3xl md:text-4xl uppercase text-white leading-none">
-                  Registration<br /><span className="text-white/40">is Open Now</span>
+                  Registration<br /><span className="text-white/40">is Now Closed</span>
                 </motion.h3>
                 <motion.div variants={fadeUp} className="flex items-center gap-2 mt-3 text-sm font-display text-white/40">
                   <Calendar className="w-4 h-4 text-red-400" />
@@ -398,13 +396,12 @@ export default function Home() {
                 </motion.div>
               </div>
               <motion.div variants={fadeUp} className="flex flex-col items-center gap-3 shrink-0">
-                <button
-                  onClick={() => window.open(FORM_LINK, "_blank")}
+                <div
                   data-testid="button-register-mid"
-                  className="px-10 py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-black rounded-sm transition-all hover:scale-105"
-                  style={{ background: "linear-gradient(135deg,#ff3333,#ff6600)", boxShadow: "0 0 30px rgba(255,80,0,0.35)" }}>
-                  Register Now
-                </button>
+                  aria-disabled="true"
+                  className="px-10 py-4 font-display font-black text-sm uppercase tracking-[0.15em] text-white/45 rounded-sm border border-white/10 bg-white/[0.03] cursor-not-allowed select-none">
+                  Registration Closed
+                </div>
                 <Link href="/registration"
                   className="text-xs font-display font-semibold text-white/35 hover:text-white transition-colors uppercase tracking-wider">
                   View full registration details →
@@ -509,9 +506,9 @@ export default function Home() {
                 <h5 className="font-display font-black text-xs tracking-[0.2em] uppercase text-white/30 mb-3">Pages</h5>
                 <div className="space-y-2">
                   {[
-                    { label: "Round 1 — Block Push", href: "/round-push" },
-                    { label: "Round 2 — Block Pull", href: "/round-pull" },
-                    { label: "Round 3 — Robot War", href: "/round-war" },
+                    { label: "Round 1 — Robo Push", href: "/round-push" },
+                    { label: "Round 2 — Robo Pull", href: "/round-pull" },
+                    { label: "Round 3 — Robo War", href: "/round-war" },
                     { label: "Registration", href: "/registration" },
                     { label: "Robot Specifications", href: "/robot-specs" },
                     { label: "General Rules", href: "/rules" },
@@ -538,12 +535,6 @@ export default function Home() {
             <p className="text-white/20 text-xs font-display tracking-wider uppercase">
               © 2026 FunScholar Innovations Pvt. Ltd. · Bharat Robotics League
             </p>
-            <button
-              onClick={() => window.open(FORM_LINK, "_blank")}
-              className="px-6 py-2.5 font-display font-black text-xs uppercase tracking-[0.15em] text-black rounded-sm"
-              style={{ background: "linear-gradient(135deg,#ff3333,#ff6600)" }}>
-              Register Now
-            </button>
           </div>
         </div>
       </footer>

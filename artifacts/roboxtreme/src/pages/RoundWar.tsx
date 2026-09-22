@@ -53,7 +53,7 @@ export default function RoundWar() {
 
       {/* Cinematic hero image */}
       <div className="relative pt-16 overflow-hidden">
-        <img src={robotWarImg} alt="Robot War" className="w-full object-cover object-center" style={{ maxHeight: "580px" }} />
+        <img src={robotWarImg} alt="Robo War" className="w-full object-cover object-center" style={{ maxHeight: "580px" }} />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-background/25" />
 
         <div className="absolute inset-0 flex items-center justify-center">
@@ -67,7 +67,7 @@ export default function RoundWar() {
               <span className="font-display font-black text-xs tracking-[0.2em] uppercase bg-yellow-400 text-black px-3 py-1.5 rounded-sm">Round 3</span>
             </motion.div>
             <motion.h1 variants={fadeUp} className="font-display font-black uppercase leading-none">
-              <span className="block text-6xl md:text-8xl text-white">ROBOT</span>
+              <span className="block text-6xl md:text-8xl text-white">ROBO</span>
               <span className="block text-7xl md:text-9xl" style={{ color: "#ff3333", textShadow: "0 0 40px rgba(255,50,50,0.7)" }}>WAR</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="font-display font-bold text-2xl text-white/75 mt-2">
