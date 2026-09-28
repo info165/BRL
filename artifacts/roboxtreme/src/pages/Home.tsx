@@ -10,6 +10,7 @@ import blockPullImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_17805702
 import robotWarImg from "@assets/WhatsApp_Image_2026-06-04_at_16.17.01_(1)_1780570206668.jpeg";
 import heroArenaImg from "@assets/hero-robo-war.jpg";
 import GearO from "@/components/GearO";
+import friendsFmLogo from "@assets/friends-fm-logo.png";
 import funscholarLogo from "@assets/funscholar-logo.png";
 import Nav from "@/components/Nav";
 
@@ -130,12 +131,13 @@ export default function Home() {
 
             {/* FunScholar presenter lockup */}
             <motion.div variants={fadeUp} className="mb-8">
-              <div className="inline-flex flex-col gap-2.5">
+              <div className="inline-flex flex-col items-start gap-2.5">
+                <div className="inline-flex flex-col items-stretch gap-2.5 w-fit">
                 <img
                   src={funscholarLogo}
                   alt="FunScholar"
                   draggable={false}
-                  className="h-8 md:h-9 w-auto block select-none"
+                  className="h-10 md:h-12 w-auto max-w-none self-start object-contain block select-none"
                 />
                 <div className="flex items-center gap-3">
                   <span className="h-px flex-1 bg-gradient-to-r from-transparent to-white/25" />
@@ -143,6 +145,22 @@ export default function Home() {
                     presents
                   </span>
                   <span className="h-px flex-1 bg-gradient-to-l from-transparent to-white/25" />
+                </div>
+                </div>
+
+                {/* Radio partner, kept smaller than the presenter above it */}
+                <div className="mt-2 flex items-center gap-3">
+                  <span className="font-sans font-light text-[9px] md:text-[10px] tracking-[0.34em] indent-[0.34em] uppercase text-white/40 whitespace-nowrap">
+                    In association with
+                  </span>
+                  <span className="h-4 w-px bg-white/15 shrink-0" />
+                  <img
+                    src={friendsFmLogo}
+                    alt="91.9 Friends FM"
+                    draggable={false}
+                    className="h-8 md:h-9 w-auto object-contain block select-none"
+                    style={{ filter: "drop-shadow(0 3px 10px rgba(0,0,0,0.55))" }}
+                  />
                 </div>
               </div>
             </motion.div>
