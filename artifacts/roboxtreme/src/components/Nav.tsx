@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,6 +7,7 @@ import brlLogo from "@assets/brl-logo.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
+  { label: "League Info", href: "/home" },
   {
     label: "Rounds", href: "#",
     children: [
@@ -20,14 +21,30 @@ const navLinks = [
   { label: "General Rules", href: "/rules" },
 ];
 
-export default function Nav() {
+/** overlay: start transparent over a full-bleed hero and turn solid once the page scrolls. */
+/** compact: header shows only Home and League Info; the page's footer carries the other links. */
+export default function Nav({ overlay = false, compact = false }: { overlay?: boolean; compact?: boolean } = {}) {
+  const links = compact ? navLinks.filter((l) => l.href === "/" || l.href === "/home") : navLinks;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!overlay) return;
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [overlay]);
+
+  const solid = !overlay || scrolled || mobileOpen;
   const [roundsOpen, setRoundsOpen] = useState(false);
   const [location] = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/8"
-      style={{ background: "rgba(7,10,15,0.95)", backdropFilter: "blur(12px)" }}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-[background,border-color,box-shadow] duration-500 ${solid ? "border-b border-white/8" : "border-0"}`}
+      style={solid
+        ? { background: "rgba(7,10,15,0.95)", backdropFilter: "blur(12px)" }
+        : { background: "linear-gradient(to bottom, rgba(7,10,15,0.65) 0%, rgba(7,10,15,0) 100%)" }}>
       <div className="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
 
         {/* Logo */}
@@ -44,7 +61,7 @@ export default function Nav() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) =>
+          {links.map((link) =>
             link.children ? (
               <div key={link.label} className="relative group">
                 <button
@@ -97,6 +114,9 @@ export default function Nav() {
             <div className="px-5 py-4 space-y-1">
               <Link href="/" onClick={() => setMobileOpen(false)}
                 className="block py-2 font-display font-bold text-sm uppercase tracking-wider text-white/70 hover:text-white">Home</Link>
+              <Link href="/home" onClick={() => setMobileOpen(false)}
+                className="block py-2 font-display font-bold text-sm uppercase tracking-wider text-white/70 hover:text-white">League Info</Link>
+              {!compact && (<>
               <button onClick={() => setRoundsOpen(!roundsOpen)}
                 className="w-full text-left flex items-center justify-between py-2 font-display font-bold text-sm uppercase tracking-wider text-white/70 hover:text-white">
                 Rounds <ChevronDown className={`w-4 h-4 transition-transform ${roundsOpen ? "rotate-180" : ""}`} />
@@ -121,6 +141,7 @@ export default function Nav() {
                 className="block py-2 font-display font-bold text-sm uppercase tracking-wider text-white/70 hover:text-white">Robot Specs</Link>
               <Link href="/rules" onClick={() => setMobileOpen(false)}
                 className="block py-2 font-display font-bold text-sm uppercase tracking-wider text-white/70 hover:text-white">General Rules</Link>
+              </>)}
             </div>
           </motion.div>
         )}

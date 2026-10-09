@@ -102,7 +102,7 @@ const awards = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
-      <Nav />
+      <Nav compact />
 
       {/* Floating WhatsApp */}
       <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
